@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Http\Requests\Admin\Postcard;
+
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
+class StoreRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'title' => 'required',
+            'slug' => Rule::unique('events')->ignore($this->get('id')),
+            //'cover' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Please enter postcard title',
+            'slug.unique' => 'Slug is exist',
+            //'cover.required' => 'Please upload cover'
+        ];
+    }
+}
