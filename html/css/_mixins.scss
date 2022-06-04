@@ -1,0 +1,17 @@
+@mixin hoverArrow{
+    width: 35px;
+    height: 23px;
+    right:0;
+    top:22px;
+    background:url(../images/arrow2.png) no-repeat;
+    background-size: 100%;
+}
+@mixin lineBorder {
+    position: absolute;
+    width: calc(100% - 24px);
+    height: 1px;
+    bottom: 281px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}

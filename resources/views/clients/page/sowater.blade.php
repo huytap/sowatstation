@@ -43,7 +43,7 @@ $collection3 = $collection->filter(function($val, $key){
             <div class="col-md-4">
                 <div class="artist__square wow fadeInUp" data-wow-duration="1.5s"><img src="{{asset('clients/images/sowater-square.png')}}" alt=""></div>
                 @foreach($collection1 as $col)
-                    <div class="artist__avatar wow fadeInUp" data-wow-duration="1.5s">
+                    <a href="/artist/{{$col->slug}}.html" class="artist__avatar wow fadeInUp" data-wow-duration="1.5s">
                         <div class="artist__avatar--img"><img src="{{asset('uploads/'.$col->avatar)}}" class="img-fluid"></div>
                         <div class="artist__avatar--active">
                             <img src="{{asset('uploads/'.$col->avatar_hover)}}" class="img-fluid">
@@ -51,14 +51,14 @@ $collection3 = $collection->filter(function($val, $key){
                                 {{$col->full_name}}
                             </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
             @endif
             @if(!empty($collection2))
                 <div class="col-md-4">
                     @foreach($collection2 as $col)
-                        <div class="artist__avatar wow fadeInUp" data-wow-duration="1.5s">
+                        <a href="/artist/{{$col->slug}}.html" class="artist__avatar wow fadeInUp" data-wow-duration="1.5s">
                             <div class="artist__avatar--img"><img src="{{asset('uploads/'.$col->avatar)}}" class="img-fluid"></div>
                             <div class="artist__avatar--active">
                                 <img src="{{asset('uploads/'.$col->avatar_hover)}}" class="img-fluid">
@@ -66,7 +66,7 @@ $collection3 = $collection->filter(function($val, $key){
                                     {{$col->full_name}}
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     @endforeach
                     <div class="artist__icon wow fadeInUp" data-wow-duration="1.5s"><img src="{{asset('clients/images/sowater-box.png')}}" alt=""></div>
                 </div>
@@ -74,7 +74,7 @@ $collection3 = $collection->filter(function($val, $key){
             @if(!empty($collection3))
                 <div class="col-md-4">
                     @foreach($collection3 as $col)
-                        <div class="artist__avatar wow fadeInUp" data-wow-duration="1.5s">
+                        <a href="/artist/{{$col->slug}}.html" class="artist__avatar wow fadeInUp" data-wow-duration="1.5s">
                             <div class="artist__avatar--img"><img src="{{asset('uploads/'.$col->avatar)}}" class="img-fluid"></div>
                             <div class="artist__avatar--active">
                                 <img src="{{asset('uploads/'.$col->avatar_hover)}}" class="img-fluid">
@@ -82,7 +82,7 @@ $collection3 = $collection->filter(function($val, $key){
                                     {{$col->full_name}}
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     @endforeach
                     <div class="artist__icon wow fadeInUp" data-wow-duration="1.5s"><img src="{{asset('clients/images/event.png')}}" alt=""></div>
                     <div class="artist__round wow fadeInUp" data-wow-duration="1.5s"><img src="{{asset('clients/images/sowater-round.png')}}" alt=""></div>

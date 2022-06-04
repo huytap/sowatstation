@@ -11,16 +11,16 @@
 <nav class="menu collapse" id="menu">
     <div class="container">
         <div class="menu__top">
-            <a href="{{route('home')}}" href="#"><img src="{{asset('logo2.png')}}" class="img-fluid" alt="Sowat Station"></a>
+            <a href="{{route('home')}}" href="#"><img src="{{asset('logo.png')}}" class="img-fluid" alt="Sowat Station"></a>
             <a class="navbar-toggler" id="iconclose" data-bs-toggle="collapse" href="#menu" role="button" aria-expanded="false" aria-controls="menu">
                 <img src="{{asset('clients/images/close.jpg')}}" alt="" />
             </a>
         </div>
         <ul id="navbar" class="menu__list text-end">
+            <li><a href="{{route('home')}}">HOME</a></li>
             <li><a href="{{route('home')}}">ABOUT US</a></li>
-            <li><a href="{{route('sowater')}}">SOWATER</a></li>
-            <li><a href="#">ARTS & PRODUCTION</a></li>
-            <li><a href="#">EVENTS</a></li>
+            <li><a href="{{route('sowater')}}">CREATIVE ACTIVITIES</a></li>
+            <li><a href="#">STORE</a></li>
         </ul>
     </div>
 </nav>

@@ -1,0 +1,36 @@
+@import 'variable';
+@import 'mixins';
+@import 'fonts';
+body{
+    background: $mainBg;
+    font-family: 'Muli';
+    font-weight: 300;
+    font-size: 18px;
+    color: $whiteColor;
+}
+ul{
+    margin: 0;
+    padding:0;
+}
+ul li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color:$whiteColor;
+    &:hover{
+        color: $whiteColor;
+    }
+}
+h1{
+    font-size: 155px;
+    font-weight: 900;
+}
+h2{
+    font-size: 177px;
+    font-weight: 900;
+}
+h3{
+    font-size: 30px;
+    font-weight: 600;
+}
