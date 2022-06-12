@@ -24,9 +24,13 @@ use App\Http\Controllers\Admin\PostcardController;
 */
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
-Route::get('/sowater', [PageController::class, 'sowater'])->name('sowater');
-
-
+Route::get('/about.html', [PageController::class, 'about'])->name('about');
+Route::get('/creative-activities.html', [PageController::class, 'creative'])->name('creative');
+Route::get('/creative-activities/creative-detail.html', [PageController::class, 'creativedetail'])->name('creativedetail');
+Route::get('/portfolio/{slug}.html', [PageController::class, 'portfolio'])->name('portfolio');
+Route::get('/sowat-store.html', [PageController::class, 'store'])->name('store');
+Route::get('/storedetail.html', [PageController::class, 'storedetail'])->name('storedetail');
+Route::get('/project.html', [ProjectController::class, 'index'])->name('project');
 //admin
 Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');

@@ -34,4 +34,20 @@ class Sowater extends Model
             ->get();
         return $data;
     }
+
+    public static function getInfo($id)
+    {
+        $data = Sowater::where('status', 0)
+            ->where('id', $id)
+            ->first();
+        return $data;
+    }
+
+    public static function getBySlug($slug)
+    {
+        $data = Sowater::where('slug', $slug)
+            ->where('status', 0)
+            ->first();
+        return $data;
+    }
 }

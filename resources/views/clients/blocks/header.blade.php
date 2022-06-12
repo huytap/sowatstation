@@ -13,14 +13,14 @@
         <div class="menu__top">
             <a href="{{route('home')}}" href="#"><img src="{{asset('logo.png')}}" class="img-fluid" alt="Sowat Station"></a>
             <a class="navbar-toggler" id="iconclose" data-bs-toggle="collapse" href="#menu" role="button" aria-expanded="false" aria-controls="menu">
-                <img src="{{asset('clients/images/close.jpg')}}" alt="" />
+                <img src="{{asset('clients/images/button-close-menu.png')}}" alt="" class="img-fluid" />
             </a>
         </div>
         <ul id="navbar" class="menu__list text-end">
             <li><a href="{{route('home')}}">HOME</a></li>
-            <li><a href="{{route('home')}}">ABOUT US</a></li>
-            <li><a href="{{route('sowater')}}">CREATIVE ACTIVITIES</a></li>
-            <li><a href="#">STORE</a></li>
+            <li><a href="{{route('about')}}">ABOUT US</a></li>
+            <li><a href="{{route('creative')}}">CREATIVE ACTIVITIES</a></li>
+            <li><a href="{{route('store')}}">STORE</a></li>
         </ul>
     </div>
 </nav>
