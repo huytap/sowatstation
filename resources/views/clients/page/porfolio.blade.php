@@ -5,7 +5,7 @@
 @section('content')
 <div class="sowater creative__activities portfolio__head">
     <div class="container">
-        <h1 class="title wow fadeInUp" data-wow-duration="1.5s">
+        <h1 class="title">
             <div class="icon">
                 <img src="{{asset('clients/images/round.png')}}" alt="">
             </div>
@@ -21,7 +21,7 @@
                         <div class="portfolio__info--title">
                             <ul>
                                 @foreach($art_title as $title)
-                                    <li><img src="{{asset('clients/images/el__li.png')}}" alt="">{{$title}}</li>
+                                    <li>{{$title}}</li>
                                 @endforeach
                             </ul>
                         </div>
@@ -40,9 +40,11 @@
                         </div>
                         <div class="col-md-7">
                             <div class="artist__avatar wow fadeInUp" data-wow-duration="1.5s">
-                                <div class="artist__avatar--img"><img src="{{asset('uploads/'.$data->avatar)}}" class="img-fluid"></div>
+                                <div class="artist__avatar--img">
+                                    <img src="{{asset('uploads/'.$data->avatar)}}" alt="" class="img-fluid">
+                                </div>
                                 <div class="artist__avatar--active">
-                                    <img src="{{asset('uploads/'.$data->avatar_hover)}}" class="img-fluid">
+                                    <img src="{{asset('uploads/'.$data->avatar_hover)}}" alt="" class="img-fluid">
                                 </div>
                             </div>
                         </div>

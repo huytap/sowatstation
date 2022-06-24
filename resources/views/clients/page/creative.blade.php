@@ -2,11 +2,11 @@
 @section('content')
 <div class="sowater creative__activities">
     <div class="container">
-        <h1 class="title wow fadeInUp" data-wow-duration="1.5s">
+        <h1 class="title">
             <div class="icon">
                 <img src="{{asset('clients/images/round.png')}}" alt="">
             </div>
-            CREATIVE <span>-</span><br/>ACTIVITIES
+            CREATIVE <span class="h1__line"></span><br/><span>ACTIVITIES</span>
         </h1>
     </div>
 </div>

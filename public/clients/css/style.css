@@ -39,7 +39,7 @@
 }
 
 body {
-  background: #000235;
+  background: #000346;
   font-family: 'Muli';
   font-weight: 300;
   font-size: 18px;
@@ -69,6 +69,22 @@ h1 {
   font-weight: 900;
 }
 
+h1 .h1__line {
+  position: relative;
+}
+
+h1 .h1__line::after {
+  width: 60px;
+  height: 13px;
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #f50099;
+}
+
 h2 {
   font-size: 177px;
   font-weight: 900;
@@ -85,7 +101,7 @@ h3 {
 
 .container {
   position: relative;
-  max-width: 1120px;
+  max-width: 1170px;
 }
 
 .header {
@@ -635,6 +651,7 @@ h3 {
   font-size: 12px;
   text-transform: none;
   opacity: 0;
+  display: none;
 }
 
 .artist__info {
@@ -779,56 +796,35 @@ h3 {
   overflow: hidden;
 }
 
+.services__arrowdown {
+  width: 65px;
+  height: 260px;
+  position: absolute;
+  left: -100px;
+  top: 130px;
+}
+
+.services__arrowdown2 {
+  width: 48px;
+  height: 208px;
+  position: absolute;
+  right: -115px;
+  bottom: 460px;
+}
+
 .services .container {
   position: relative;
 }
 
-.services .container:before {
-  content: "";
-  position: absolute;
-  width: 65px;
-  height: 260px;
-  left: -45px;
-  top: 130px;
-  background: url(../images/arrow-down.png) no-repeat;
-  visibility: visible;
-  -webkit-animation-duration: 1.5s;
-          animation-duration: 1.5s;
-  -webkit-animation-name: fadeInUp;
-          animation-name: fadeInUp;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-          animation-fill-mode: both;
-}
-
-.services .container::after {
-  content: "";
-  position: absolute;
-  width: 48px;
-  height: 208px;
-  right: -70px;
-  bottom: 460px;
-  background: url(../images/arrow-down-2.png) no-repeat;
-  visibility: visible;
-  -webkit-animation-duration: 1.5s;
-          animation-duration: 1.5s;
-  -webkit-animation-name: fadeInUp;
-          animation-name: fadeInUp;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-          animation-fill-mode: both;
-}
-
 .services__title {
-  margin: 0 50px;
+  margin: 0;
   border-bottom: 1px solid #2b009e;
   padding-bottom: 50px;
 }
 
 .services__list {
   padding-bottom: 50px;
+  margin: 0 -50px;
 }
 
 .services__list--item {
@@ -852,7 +848,7 @@ h3 {
   width: 1920px;
   height: calc(100% - 35px);
   position: absolute;
-  left: -65%;
+  left: -84%;
   top: 90px;
   background: #5b005e;
   z-index: -3;
@@ -862,7 +858,7 @@ h3 {
   background: #db1277;
   margin: -50px;
   width: calc(100% + 50px);
-  padding: 50px;
+  padding: 50px 50px 40px;
 }
 
 .services__list--item:last-child .services__list--item__contentpr::before {
@@ -917,7 +913,7 @@ h3 {
   -webkit-box-flex: 0;
       -ms-flex: none;
           flex: none;
-  padding-left: 30px;
+  padding-left: 25px;
 }
 
 .services__list--item__cover {
@@ -955,7 +951,7 @@ h3 {
 }
 
 .services__list--item__content--title img {
-  max-width: 170px;
+  max-width: 165px;
 }
 
 .services__list--item__title {
@@ -991,7 +987,7 @@ h3 {
 }
 
 .services__list--item__list li:last-child {
-  padding-bottom: 15px;
+  padding-bottom: 0;
 }
 
 .projects {
@@ -1061,10 +1057,6 @@ h3 {
   background-color: #2e009e;
   z-index: -1;
   visibility: visible;
-  -webkit-animation-duration: 1.5s;
-          animation-duration: 1.5s;
-  -webkit-animation-name: fadeInUp;
-          animation-name: fadeInUp;
 }
 
 .creative__activities h1 {
@@ -1075,6 +1067,9 @@ h3 {
   display: inline-block;
   position: relative;
   z-index: 1;
+  font-weight: 800;
+  font-family: 'Prompt', sans-serif;
+  letter-spacing: 10.5px;
 }
 
 .creative__activities h1 img {
@@ -1141,8 +1136,12 @@ h3 {
   display: flex;
 }
 
-.creative__item--desc {
+.creative__item:hover .creative__item--desc {
   background-color: #1e00cc;
+}
+
+.creative__item--desc {
+  background-color: #2e009e;
   display: block;
   padding: 10px 18px;
   font-size: 16px;
@@ -1153,7 +1152,7 @@ h3 {
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(100% - 43px);
+  height: calc(100% - 44px);
   background-color: rgba(255, 222, 1, 0.89);
   padding: 0 28px;
   font-size: 18px;
@@ -1169,6 +1168,7 @@ h3 {
 
 .creative__item--detail__title {
   font-size: 30px;
+  font-weight: 700;
 }
 
 .creative__item--detail p {
@@ -1196,6 +1196,9 @@ h3 {
   font-size: 35px;
   margin-top: 30px;
   margin-bottom: 30px;
+  background-color: transparent !important;
+  font-family: "Muli", sans-serif !important;
+  letter-spacing: normal !important;
 }
 
 .project__category {
@@ -1212,10 +1215,6 @@ h3 {
 
 .project__content--social a {
   padding-right: 10px !important;
-}
-
-.project__content--images {
-  margin-top: 30px;
 }
 
 .project__content .content-m {
@@ -1236,7 +1235,7 @@ h3 {
 .project .sowater {
   text-align: center;
   background: #ffde00;
-  margin: 60px 0 30px;
+  margin: 60px 0 0;
   padding: 50px 0;
   position: relative;
   z-index: -1;
@@ -1295,7 +1294,8 @@ h3 {
 
 .portfolio__head .container::after {
   background-color: #52ff00;
-  width: calc(100% - 165px);
+  width: calc(100% - 131px);
+  margin-left: 12px;
 }
 
 .portfolio__head h1 {
@@ -1304,8 +1304,8 @@ h3 {
 
 .portfolio__head h1 img {
   left: auto;
-  right: 26px;
-  bottom: 35px;
+  right: 35px;
+  bottom: 40px;
   top: auto;
   max-width: 115px;
 }
@@ -1328,6 +1328,7 @@ h3 {
 .portfolio__info {
   padding-top: 160px;
   margin-bottom: 50px;
+  border-bottom: 1px solid #2b009e;
 }
 
 .portfolio__info--about, .portfolio__info--desc {
@@ -1386,7 +1387,6 @@ h3 {
 
 .portfolio__info--desc {
   padding: 20px 0;
-  border-bottom: 1px solid #2b009e;
 }
 
 .portfolio__info .artist__avatar {
@@ -1394,20 +1394,27 @@ h3 {
   overflow: visible;
   text-align: right;
   padding-right: 30px;
+  margin-left: 30px;
+  float: right;
+}
+
+.portfolio__info .artist__avatar--img, .portfolio__info .artist__avatar--active {
+  height: 100%;
 }
 
 .portfolio__info .artist__avatar::after {
   content: "";
   position: absolute;
-  width: calc(100% - 30px);
+  width: calc(100% - 53px);
   height: calc(100% - 30px);
-  left: 30px;
+  left: 53px;
   top: 30px;
   background-color: #db1277;
 }
 
 .portfolio__info .artist__avatar--active {
   width: calc(100% - 53px);
+  height: calc(100% - 23px);
 }
 
 .store::after {
@@ -1421,6 +1428,15 @@ h3 {
   display: block;
   margin-left: -56px;
   padding-left: 56px;
+  font-weight: 800;
+  font-family: 'Prompt', sans-serif;
+  letter-spacing: 13.5px;
+}
+
+.store h1 .h1__line::after {
+  left: 30px;
+  background: #57ffe0;
+  width: 80px;
 }
 
 .store h1 .store {
@@ -1429,7 +1445,7 @@ h3 {
 }
 
 .store h1 img {
-  left: 178px;
+  left: 170px;
   bottom: auto;
   top: 65px;
   max-width: 110px;
@@ -1440,7 +1456,7 @@ h3 {
   height: 100%;
   width: calc(100% + 67px);
   top: 30px;
-  left: -90px;
+  left: -95px;
 }
 
 .store .sowater {

@@ -34,7 +34,7 @@
         </div>
     </div>
     <div class="creative">
-        <h3 class="creative__title">Related stores</h3>
+        <h3 class="creative__title">Related products</h3>
         <div class="row">
             <div class="col-lg-4 col-md-6 wow fadeInUp filter digital-design social  animated" data-id="1712" style="visibility: visible; animation-name: fadeInUp;">
                 <a href="{{route('creativedetail')}}" class="creative__item">

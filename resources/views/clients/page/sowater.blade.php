@@ -45,15 +45,16 @@ $arrBg = [
     .list .row .col-md-4:last-child .artist__avatar:first-child:after{
         background: {{$arrBg[6]}};
     }
+    .list .row .col-md-4:last-child .artist__avatar:nth-child(2):after,
     .list .row .col-md-4:last-child .artist__avatar:last-child:after{
-        background: {{$arrBg[7]}};
+        background: {{$arrBg[8]}};
     }
 </style>
 @endsection
 @section('content')
 <div class="sowater">
     <div class="container">
-        <h1 class="title wow fadeInUp" data-wow-duration="1.5s">ABOUT <span>-</span><br/>U<img src="{{asset('clients/images/s.png')}}" alt=""></h1>
+        <h1 class="title">ABOUT <span class="h1__line"></span><br/>U<img src="{{asset('clients/images/s.png')}}" alt=""></h1>
         <div class="sowater__description">
             <div class="sowater__description--right">
                 <p>The Hunter Group has been established for 15 years since 2007 in Vietnam as a local creative agency, making a tireless effort to find out the best communication solutions through our creativity.</p>

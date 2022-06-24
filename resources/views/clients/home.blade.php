@@ -13,7 +13,13 @@ use App\Models\Setting;
     </ul>
 </div>
 <div class="services">
-    <div class="container">
+    <div class="container wow fadeInUp" data-wow-duration="1.5s">
+        <div class="services__arrowdown wow fadeInUp" data-wow-duration="1.5s">
+            <img src="{{asset('clients/images/arrow-down1.png')}}" alt="" class="img-fluid">
+        </div>
+        <div class="services__arrowdown2 wow fadeInUp" data-wow-duration="1.5s">
+            <img src="{{asset('clients/images/arrow-down2.png')}}" alt="" class="img-fluid">
+        </div>
         <div class="services__title wow fadeInUp" data-wow-duration="1.5s">
             <img src="{{asset('clients/images/text__our-service.png')}}" alt="" class="img-fluid">
         </div>
@@ -33,7 +39,7 @@ use App\Models\Setting;
                             <div class="col-md-9">
                                 <div class="services__list--item__hub">
                                     <div class="services__list--item__title">
-                                        <img src="{{asset('clients/images/text__our-service-hub.png')}}" alt="" class="img-fluid">
+                                        <a href="{{route('creative')}}"><img src="{{asset('clients/images/text__our-service-hub.png')}}" alt="" class="img-fluid"></a>
                                     </div>
                                     <ul class="services__list--item__list">
                                         <li>
@@ -60,7 +66,7 @@ use App\Models\Setting;
                     <div class="row">
                         <div class="col services__list--item__right">
                             <div class="services__list--item__titlepr">
-                                <img src="{{asset('clients/images/text__our-service-production.png')}}" alt="" class="img-fluid">
+                                <a href="{{route('store')}}"><img src="{{asset('clients/images/text__our-service-production.png')}}" alt="" class="img-fluid"></a>
                             </div>
                             <ul class="services__list--item__list">
                                 <li>
@@ -86,7 +92,6 @@ use App\Models\Setting;
     </div>
 </div>
 @endsection
-
 @section('script')
 <script type="text/javascript" src="{{asset('clients/js/bxslider.min.js')}}"></script>
 <script type="text/javascript">

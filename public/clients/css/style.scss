@@ -25,6 +25,20 @@ a{
 h1{
     font-size: 155px;
     font-weight: 900;
+    .h1__line{
+        position: relative;
+        &::after{
+          width: 60px;
+          height: 13px;
+          content:"";
+          position: absolute;
+          left: 20px;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          background: $lightPink;
+        }
+      }
 }
 h2{
     font-size: 177px;
@@ -41,7 +55,7 @@ h3{
 }
 .container{
     position: relative;
-    max-width: 1120px;
+    max-width: 1170px;
 }
 .header{
     padding-top: 60px;
@@ -443,7 +457,6 @@ h3{
         .container{
             padding-top: 50px;
             &::before{
-                
             }
         }
     }
@@ -519,6 +532,7 @@ h3{
                 font-size: 12px;
                 text-transform: none;
                 opacity: 0;
+                display: none;
             }
         }
     }
@@ -661,44 +675,59 @@ h3{
 }
 .services{
     overflow: hidden;
+    &__arrowdown{
+        width: 65px;
+        height: 260px;
+        position: absolute;
+        left: -100px;
+        top: 130px;
+    }
+    &__arrowdown2{
+        width: 48px;
+        height: 208px;
+        position: absolute;
+        right: -115px;
+        bottom: 460px;
+    }
     .container{
         position: relative;
-        &:before{
-            content:"";
-            position: absolute;
-            width: 65px;
-            height: 260px;
-            left: -45px;
-            top: 130px;
-            background: url(../images/arrow-down.png) no-repeat;
-            visibility: visible;
-            animation-duration: 1.5s;
-            animation-name: fadeInUp;
-            animation-duration: 1s;
-            animation-fill-mode: both;
-        }
-        &::after{
-            content:"";
-            position: absolute;
-            width: 48px;
-            height: 208px;
-            right: -70px;
-            bottom: 460px;
-            background: url(../images/arrow-down-2.png) no-repeat;
-            visibility: visible;
-            animation-duration: 1.5s;
-            animation-name: fadeInUp;
-            animation-duration: 1s;
-            animation-fill-mode: both;
-        }
+        // &:before{
+        //     content:"";
+        //     position: absolute;
+        //     width: 65px;
+        //     height: 260px;
+        //     left: -45px;
+        //     top: 130px;
+        //     background: url(../images/arrow-down.png) no-repeat;
+        //     visibility: visible;
+        //     animation-duration: 1.5s;
+        //     animation-name: fadeInUp;
+        //     animation-duration: 1s;
+        //     animation-fill-mode: both;
+        // }
+        // &::after{
+        //     content:"";
+        //     position: absolute;
+        //     width: 48px;
+        //     height: 208px;
+        //     right: -70px;
+        //     bottom: 460px;
+        //     background: url(../images/arrow-down-2.png) no-repeat;
+        //     visibility: visible;
+        //     animation-duration: 1.5s;
+        //     animation-name: fadeInUp;
+        //     animation-duration: 1s;
+        //     animation-fill-mode: both;
+        // }
     }
     &__title{
-        margin: 0 50px;
+        margin: 0;
         border-bottom: 1px solid $lineColor;
         padding-bottom: 50px;
     }
     &__list{
         padding-bottom: 50px;
+        margin: 0 -50px;
         &--item{
             padding: 48px 0 48px 50px;
             margin-bottom: 50px;
@@ -714,7 +743,7 @@ h3{
                     width: 1920px;
                     height: calc(100% - 35px);
                     position: absolute;
-                    left: -65%;
+                    left: -84%;
                     top: 90px;
                     background: $darkPink;
                     z-index: -3;
@@ -723,7 +752,7 @@ h3{
                     background: $pinkColor;
                     margin: -50px;
                     width: calc(100% + 50px);
-                    padding: 50px;
+                    padding: 50px 50px 40px;
                     &::before{
                         background: transparent;
                     }
@@ -766,7 +795,7 @@ h3{
             &__right{
                 width: calc(67.8%);
                 flex: none;
-                padding-left: 30px;
+                padding-left: 25px;
             }
             &__cover{
                 position: relative;
@@ -799,7 +828,7 @@ h3{
                 }
                 &--title{
                     img{
-                        max-width: 170px;
+                        max-width: 165px;
                     }
                 }
             }
@@ -832,7 +861,7 @@ h3{
                         background-size: 100%;
                     }
                     &:last-child{
-                        padding-bottom: 15px;
+                        padding-bottom: 0;
                     }
                 }
             }
@@ -907,8 +936,6 @@ h3{
             background-color: $blueColor;
             z-index: -1;
             visibility: visible;
-            animation-duration: 1.5s;
-            animation-name: fadeInUp;
         }
         h1{
             background-color: $blueColor;
@@ -918,6 +945,9 @@ h3{
             display: inline-block;
             position: relative;
             z-index: 1;
+            font-weight: 800;
+            font-family: 'Prompt', sans-serif;
+            letter-spacing: 10.5px;
             img{
                 left: -35px;
                 bottom: auto;
@@ -966,9 +996,12 @@ h3{
             .creative__item--detail{
                 display: flex;
             }
+            .creative__item--desc{
+                background-color: $lightBlue;
+            }
         }
         &--desc{
-            background-color: $lightBlue;
+            background-color: $blueColor;
             display: block;
             padding: 10px 18px;
             font-size: 16px;
@@ -978,7 +1011,7 @@ h3{
             top: 0;
             left: 0;
             width: 100%;
-            height: calc(100% - 43px);
+            height: calc(100% - 44px);
             background-color: rgba(255,222, 1, .89);
             padding: 0 28px;
             font-size: 18px;
@@ -989,6 +1022,7 @@ h3{
             transition: 0.3s all ease;
             &__title{
                 font-size: 30px;
+                font-weight: 700;
             }
             p{
                 font-style: italic;
@@ -1016,6 +1050,9 @@ h3{
             font-size: 35px;
             margin-top: 30px;
             margin-bottom: 30px;
+            background-color: transparent!important;
+            font-family: 'Muli', sans-serif!important;
+            letter-spacing: normal!important;
         }
     }
     &__category{
@@ -1031,9 +1068,6 @@ h3{
             a {
                 padding-right: 10px!important;
             }
-        }
-        &--images{
-            margin-top: 30px;
         }
         .content-m{
             position: relative;
@@ -1051,7 +1085,7 @@ h3{
     .sowater{
         text-align: center;
         background: #ffde00;
-        margin: 60px 0 30px;
+        margin: 60px 0 0;
         padding: 50px 0;
         position: relative;
         z-index: -1;
@@ -1103,15 +1137,16 @@ h3{
         .container{
             &::after{
                 background-color: #52ff00;
-                width: calc(100% - 165px);
+                width: calc(100% - 131px);
+                margin-left: 12px;
             }
         }
         h1{
             background-color: $pinkColor;
             img{
                 left: auto;
-                right: 26px;
-                bottom: 35px;
+                right: 35px;
+                bottom: 40px;
                 top: auto;
                 max-width: 115px;
             }
@@ -1134,6 +1169,7 @@ h3{
     &__info{
         padding-top: 160px;
         margin-bottom: 50px;
+        border-bottom: 1px solid $lineColor;
         &--about,&--desc{
             border-left: 1px solid $lineColor;
             border-right: 1px solid $lineColor;
@@ -1182,24 +1218,30 @@ h3{
         }
         &--desc{
             padding: 20px 0;
-            border-bottom: 1px solid $lineColor;
+            // border-bottom: 1px solid $lineColor;
         }
         .artist__avatar{
             z-index: 2;
             overflow: visible;
             text-align: right;
             padding-right: 30px;
+            margin-left: 30px;
+            float: right;
+            &--img,&--active{
+                height: 100%;
+            }
             &::after{
                 content:"";
                 position: absolute;
-                width: calc(100% - 30px);
+                width: calc(100% - 53px);
                 height: calc(100% - 30px);
-                left: 30px;
+                left: 53px;
                 top: 30px;
                 background-color: #db1277;
             }
             &--active{
                 width: calc(100% - 53px);
+                height: calc(100% - 23px);
             }
         }
     }
@@ -1215,12 +1257,22 @@ h3{
         display: block;
         margin-left: -56px;
         padding-left: 56px;
+        font-weight: 800;
+        font-family: 'Prompt', sans-serif;
+        letter-spacing: 13.5px;
+        .h1__line{
+            &::after{
+                left: 30px;
+                background:#57ffe0;
+                width: 80px;
+            }
+        }
         .store{
             color:#fdff00;
             font-weight: 900;
         }
         img{
-            left: 178px;
+            left: 170px;
             bottom: auto;
             top: 65px;
             max-width: 110px;
@@ -1232,7 +1284,7 @@ h3{
             height: 100%;
             width: calc(100% + 67px);
             top: 30px;
-            left: -90px;
+            left: -95px;
         }
     }
     .sowater{
