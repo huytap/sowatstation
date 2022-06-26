@@ -11,7 +11,7 @@ class Event extends Model
 
     protected $table = 'events';
     protected $primaryKey = 'id';
-    protected $fillable = ['title', 'slug', 'cover', 'banner', 'description', 'status', 'created_by', 'updated_by'];
+    protected $fillable = ['title', 'sub_title', 'date', 'sowater_id', 'slug', 'cover', 'banner', 'short_desc', 'description', 'address', 'location', 'status', 'created_by', 'updated_by'];
     public function scopeSearch($query)
     {
         if ($key = request()->key) {

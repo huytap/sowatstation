@@ -50,27 +50,30 @@
                         </div>
                     </div>
                 </div>
+                @if(!empty($related))
                 <div class="creative">
                     <h3 class="creative__title">Activities</h3>
                     <div class="row">
-                        <div class="col-lg-4 col-md-6 wow fadeInUp filter digital-design social  animated" data-id="1712" style="visibility: visible; animation-name: fadeInUp;">
-                            <a href="{{route('creativedetail')}}" class="creative__item">
-                                <img src="{{asset('clients/images/creative/item1.jpg')}}" alt="" class="img-fluid">
-                                <span class="creative__item--desc">
-                                    Lorem ipsum dolor sit amet
-                                </span>
-                                <div class="creative__item--detail">
-                                    <div>
-                                        <div class="icon">
-                                            <img src="{{asset('clients/images/arrow-down-4.png')}}" alt="">
+                        @foreach($related as $dt)
+                            <div class="col-lg-4 col-md-6 wow fadeInUp filter digital-design social  animated" data-id="1712" style="visibility: visible; animation-name: fadeInUp;">
+                                <a href="/creative-activities/{{$dt['slug']}}.html" class="creative__item">
+                                    <img src="{{asset('uploads/'.$dt['cover_mobile'])}}" alt="" class="img-fluid">
+                                    <span class="creative__item--desc">
+                                        {{$dt['sub_title']}}
+                                    </span>
+                                    <div class="creative__item--detail">
+                                        <div>
+                                            <div class="icon">
+                                                <img src="{{asset('clients/images/arrow-down-4.png')}}" alt="">
+                                            </div>
+                                            <h3 class="creative__item--detail__title">{{$dt['title']}}</h3>
+                                            <p>{{$dt['sub_title']}}.</p>
                                         </div>
-                                        <h3 class="creative__item--detail__title">TITTLE ACTIVITY</h3>
-                                        <p>Lorem ipsum dolor sit amet.</p>
                                     </div>
-                                </div>
-                            </a>
-                        </div>     
-                        <div class="col-lg-4 col-md-6 wow fadeInUp filter digital-design social  animated" data-id="1712" style="visibility: visible; animation-name: fadeInUp;">
+                                </a>
+                            </div>   
+                        @endforeach 
+                        {{-- <div class="col-lg-4 col-md-6 wow fadeInUp filter digital-design social  animated" data-id="1712" style="visibility: visible; animation-name: fadeInUp;">
                             <a href="{{route('creativedetail')}}" class="creative__item">
                                 <img src="{{asset('clients/images/creative/item2.jpg')}}" alt="" class="img-fluid">
                                 <span class="creative__item--desc">
@@ -103,8 +106,9 @@
                                     </div>
                                 </div>
                             </a>
-                        </div>    
+                        </div>     --}}
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

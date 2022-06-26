@@ -57,16 +57,10 @@ $arrBg = [
         <h1 class="title">ABOUT <span class="h1__line"></span><br/>U<img src="{{asset('clients/images/s.png')}}" alt=""></h1>
         <div class="sowater__description">
             <div class="sowater__description--right">
-                <p>The Hunter Group has been established for 15 years since 2007 in Vietnam as a local creative agency, making a tireless effort to find out the best communication solutions through our creativity.</p>
-                <p>Descended from that spirit, SoWat Station is also a The Hunter Group's member with a solid foundation. We showed up with the mission of connecting the artist community and elevating the art industry in Vietnam to new heights.</p>
+            {!!Setting::getValue('about_desc')!!}    
             </div>  
             <div class="sowater__description--left">
-                <ul>
-                    <li>- DIVERSE RESOURCES</li>
-                    <li>- WIDE NETWORK</li>
-                    <li>- ABILITY TO COORDINATE</li>
-                    <li>- PUT THE HEART ON DETAILS</li>
-                </ul>
+                {!!Setting::getValue('about_desc_2')!!}
                 {{-- <div class="sowater__description--icon wow fadeInUp" data-wow-duration="1.5s">
                     <img src="{{asset('clients/images/event.png')}}" alt="" class="img-fluid">
                 </div> --}}

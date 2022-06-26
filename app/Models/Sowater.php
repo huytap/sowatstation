@@ -1,17 +1,14 @@
 <?php
-
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class Sowater extends Model
 {
     use HasFactory;
     public $timestamps = false;
     protected $table = 'sowaters';
     protected $primaryKey = 'id';
-    protected $fillable = ['full_name', 'avatar', 'avatar_hover', 'priority', 'on_column', 'show_homepage', 'status', 'created_by', 'updated_by'];
+    protected $fillable = ['name', 'full_name', 'title', 'type', 'slug', 'about', 'biography', 'avatar', 'avatar_hover', 'priority', 'on_column', 'show_homepage', 'work_at', 'status', 'created_by', 'updated_by'];
     public function scopeSearch($query)
     {
         if ($key = request()->key) {
@@ -19,7 +16,6 @@ class Sowater extends Model
         }
         return $query;
     }
-
     public static function getShowHome()
     {
         $data = Sowater::where('status', 0)
@@ -27,14 +23,13 @@ class Sowater extends Model
             ->get();
         return $data;
     }
-
-    public static function getList()
+    public static function getList($type = [0, 1])
     {
         $data = Sowater::where('status', 0)
+            ->wherein('type',  $type)
             ->get();
         return $data;
     }
-
     public static function getInfo($id)
     {
         $data = Sowater::where('status', 0)
@@ -42,7 +37,6 @@ class Sowater extends Model
             ->first();
         return $data;
     }
-
     public static function getBySlug($slug)
     {
         $data = Sowater::where('slug', $slug)

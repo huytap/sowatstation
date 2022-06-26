@@ -2,57 +2,60 @@
 @section('content')
 <section class="project">
     <div class="container">
-	<img src="https://hunterone.net/wp-content/uploads/2018/06/SNA_4.jpg" class="img-fluid">
+	<img src="{{asset('uploads/'.$data['cover'])}}" class="img-fluid">
 	<div class="project__title">
-		<h1>{{$data->title}}</h1>
-		<span class="project__category">| {{$data->tags}}</span>
+		<h1>{{$data['title']}}</h1>
 	</div>
 	<div class="project__content">
 		<div class="row content-m">
 			<div class="col-sm-12 text-left">
-               {!! $data->description !!}
-                {{-- <div class="social">
-                <p><a href="https://www.facebook.com/sharer/sharer.php?u=http://hunterone.net/sna-battle-of-the-year/" target="_blank" rel="noopener"><img loading="lazy" class="alignnone wp-image-193" src="http://dev2.bensturdy.com/wp-content/uploads/2018/05/facebook.png" alt="" width="30" height="30" srcset="https://hunterone.net/wp-content/uploads/2018/05/facebook.png 182w, https://hunterone.net/wp-content/uploads/2018/05/facebook-150x150.png 150w" sizes="(max-width: 30px) 100vw, 30px"></a> <a href="http://pinterest.com/pin/create/button/?url=http://hunterone.net/sna-battle-of-the-year/&amp;description=SNA Battle Of The Year" target="_blank" rel="noopener"><img loading="lazy" class="alignnone wp-image-194" src="http://dev2.bensturdy.com/wp-content/uploads/2018/05/pinterest.png" alt="" width="30" height="30" srcset="https://hunterone.net/wp-content/uploads/2018/05/pinterest.png 182w, https://hunterone.net/wp-content/uploads/2018/05/pinterest-150x150.png 150w" sizes="(max-width: 30px) 100vw, 30px"></a> <a href="http://twitter.com/share?text=SNA Battle Of The Year&amp;url=http://hunterone.net/sna-battle-of-the-year/" target="_blank" rel="noopener"><img loading="lazy" class="alignnone wp-image-195" src="http://dev2.bensturdy.com/wp-content/uploads/2018/05/twitter.png" alt="" width="30" height="30" srcset="https://hunterone.net/wp-content/uploads/2018/05/twitter.png 182w, https://hunterone.net/wp-content/uploads/2018/05/twitter-150x150.png 150w" sizes="(max-width: 30px) 100vw, 30px"></a></p>
-                </div>
-                <p>&nbsp;</p> --}}
+               {!!$data['description'] !!}
             </div>
-            @if($data->photos)
-            @php 
-            $photos = explode(',', $data->photos);
-            @endphp
-            @if($photos)
+            <div class="col-md-12">
+                <div class="sowater">
+                    <h3>{{$data->sowater->full_name}}</h3>
+                    <div class="avatar" style="background: url({{asset('uploads/'.$data->sowater->avatar)}}) no-repeat center -10px;background-size: 150%;">
+                    </div>
+                    <ul>
+                        <li><span>Host:</span> {!!$data->sowater->work_at!!}</li>
+                        <li><span>Title:</span> {{$data->sowater->title}} </li>
+                        <li><span>About:</span> {!!strip_tags($data->sowater->about)!!}</li>
+                    </ul>
+                </div>
+            </div>
+            @if(!empty($gallery))
             <div class="project__content--images">
-                @foreach($photos as $pt)
-                    <img class="img-fluid" src="{{asset('uploads/'.$pt)}}" alt=""/>
+                @foreach($gallery as $gl)
+                    <img class="img-fluid" src="{{asset('uploads/'.$gl['photo'])}}" alt=""/>
                 @endforeach
             </div>
             @endif
-            @endif
+            <a href="#" class="btn__join"><img src="{{asset('clients/images/btnJoin.png')}}" alt=""></a>
         </div>
     </div>
-    @if($related)
-    <div class="projects project__related">
-        <div class="" id="related">
-            <div class="row">
-                <div class="col-sm-12">
-                    <h3>Related projects</h3>
-                </div>
-            </div>
-            <div class="row">
-                @foreach($related as $dt)
-                    <div class="col-lg-4 col-md-6 item">
-                        <a href="./project/{{$dt->slug}}.html" class="projects__item">
-                            <div class=" projects__item--img" style="background-image: url({{asset('uploads/'.$dt->cover)}}); background-size: cover; height: 425px; background-position: center center; background-repeat: no-repeat no-repeat;"></div>
-                        </a>
-                        <a href="./project/{{$dt->slug}}.html" class="projects__item">
-                            <h2 class=" projects__item--title">
-                                {{$dt->title}}							
-                                <span>{{$dt->tags}}</span>
-                            </h2>
-                        </a>
-                    </div>  
-                @endforeach  
-            </div>
+    @if(!empty($related))
+    <div class="creative">
+        <h3 class="creative__title">Related projects</h3>
+        <div class="row">
+            @foreach($related as $dt)
+                <div class="col-lg-4 col-md-6 wow fadeInUp filter digital-design social  animated" data-id="1712" style="visibility: visible; animation-name: fadeInUp;">
+                    <a href="/creative-activities/{{$dt['slug']}}.html" class="creative__item">
+                        <img src="{{asset('uploads/'.$dt['cover_mobile'])}}" alt="" class="img-fluid">
+                        <span class="creative__item--desc">
+                            {{$dt['sub_title']}}
+                        </span>
+                        <div class="creative__item--detail">
+                            <div>
+                                <div class="icon">
+                                    <img src="{{asset('clients/images/arrow-down-4.png')}}" alt="">
+                                </div>
+                                <h3 class="creative__item--detail__title">{{$dt['title']}}</h3>
+                                <p>{{$dt['sub_title']}}.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>   
+            @endforeach     
         </div>
     </div>
     @endif

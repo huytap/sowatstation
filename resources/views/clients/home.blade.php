@@ -5,9 +5,9 @@ use App\Models\Setting;
 @section('content')
 <div class="banner events">
     <ul id="bannerSlide">
-        @foreach($events as $key => $event)
+        @foreach($slides as $key => $slide)
             <li>
-                <img src="{{asset('clients/images/home-slide1.jpg')}}" alt="" class="img-fluid"/>
+                <img src="{{asset('uploads/'.$slide['photo'])}}" alt="" class="img-fluid"/>
             </li>
         @endforeach
     </ul>
@@ -27,7 +27,7 @@ use App\Models\Setting;
             <div class="services__list--item wow fadeInUp" data-wow-duration="1.5s">
                 <div class="col services__list--item__left">
                     <div class="services__list--item__cover">
-                        <img src="{{asset('clients/images/cover__our-service.png')}}" alt="" class="img-fluid">
+                        <img src="{{asset('uploads/'.Setting::getImage('art_hub'))}}" alt="" class="img-fluid">
                     </div>
                 </div>
                 <div class="col services__list--item__right">
@@ -41,20 +41,9 @@ use App\Models\Setting;
                                     <div class="services__list--item__title">
                                         <a href="{{route('creative')}}"><img src="{{asset('clients/images/text__our-service-hub.png')}}" alt="" class="img-fluid"></a>
                                     </div>
-                                    <ul class="services__list--item__list">
-                                        <li>
-                                            For those who love art and who need art
-                                        </li>
-                                        <li>
-                                            For artists - established artist and maiden artist                                        
-                                        </li>
-                                        <li>
-                                            With #Artspeak #Artjoy #Artlocal #Artinnovate
-                                        </li>
-                                        <li>
-                                            Plan and Organize events and workshops
-                                        </li>
-                                    </ul>
+                                    <div class="services__list--item__list">
+                                        {!!Setting::getValue('art_hub')!!}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -68,21 +57,13 @@ use App\Models\Setting;
                             <div class="services__list--item__titlepr">
                                 <a href="{{route('store')}}"><img src="{{asset('clients/images/text__our-service-production.png')}}" alt="" class="img-fluid"></a>
                             </div>
-                            <ul class="services__list--item__list">
-                                <li>
-                                    Integrated Marketing Communications campaign support items
-                                </li>
-                                <li>
-                                    Non marketing items
-                                </li>
-                                <li>
-                                    Customized and personalized unique items
-                                </li>
-                            </ul>
+                            <div class="services__list--item__list">
+                                {!!Setting::getValue('art_work')!!}
+                            </div>
                         </div>
                         <div class="col services__list--item__left">
                             <div class="services__list--item__cover">
-                                <img src="{{asset('clients/images/cover__our-service-production.png')}}" alt="" class="img-fluid">
+                                <img src="{{asset('uploads/'.Setting::getImage('art_work'))}}" alt="" class="img-fluid">
                             </div>
                         </div>
                     </div>

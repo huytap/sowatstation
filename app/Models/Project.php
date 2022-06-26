@@ -1,16 +1,17 @@
 <?php
-
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class Project extends Model
 {
     use HasFactory;
     protected $table = 'projects';
     protected $primaryKey = 'id';
-    protected $fillable = ['title', 'slug', 'category_id', 'cover', 'cover_mobile', 'tags', 'description', 'photos', 'status', 'created_by', 'updated_by'];
+    protected $fillable = ['title', 'slug', 'sowater_id', 'cover', 'cover_mobile', 'sub_title', 'description', 'photos', 'status', 'created_by', 'updated_by'];
+    public function sowater()
+    {
+        return $this->belongsTo('App\Models\Sowater', 'sowater_id');
+    }
     public function scopeSearch($query)
     {
         if ($key = request()->key) {
@@ -18,7 +19,6 @@ class Project extends Model
         }
         return $query;
     }
-
     public static function getList($id = 0)
     {
         if ($id) {
@@ -31,7 +31,6 @@ class Project extends Model
         }
         return $data;
     }
-
     public static function getBySlug($slug)
     {
         $data = Project::where('slug', $slug)
@@ -39,12 +38,18 @@ class Project extends Model
             ->first();
         return $data;
     }
-
-    public static function getListByArt($sowater_id)
+    public static function getListByArt($sowater_id, $id = 0)
     {
-        $data = Poject::where('status', 0)
-            ->where('sowater_id', $sowater_id)
-            ->get();
+        if ($id) {
+            $data = Project::where('status', 0)
+                ->where('id', '<>', $id)
+                ->where('sowater_id', $sowater_id)
+                ->get();
+        } else {
+            $data = Project::where('status', 0)
+                ->where('sowater_id', $sowater_id)
+                ->get();
+        }
         return $data;
     }
 }

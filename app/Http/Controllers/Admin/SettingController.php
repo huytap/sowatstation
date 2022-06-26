@@ -1,12 +1,9 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Setting;
 use App\Http\Requests\Admin\Setting\StoreRequest;
-
 class SettingController extends Controller
 {
     /**
@@ -20,7 +17,6 @@ class SettingController extends Controller
         $data = Setting::search()->paginate(15);
         return view('admin.setting.index', compact('data', 'title'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -32,7 +28,6 @@ class SettingController extends Controller
         $setting = new Setting;
         return view('admin.setting.create', compact('setting', 'title'));
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -41,11 +36,20 @@ class SettingController extends Controller
      */
     public function store(StoreRequest $request)
     {
+        $path = base_path() . '/public/uploads';
+        // if ($request->hasFile('cover_upload')) {
+        //     if ($request->cover_upload->isValid()) {
+        //         $file = $request->cover_upload;
+        //         $ext = $file->extension();
+        //         $fileName = md5(uniqid()) . '.' . $ext;
+        //         $file->move($path, $fileName);
+        //         $request->merge(['photo' => $fileName]);
+        //     }
+        // }
         if (Setting::create($request->all())) {
             return redirect()->route('setting.index')->with('success', 'Add new setting success');
         }
     }
-
     /**
      * Display the specified resource.
      *
@@ -56,7 +60,6 @@ class SettingController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -68,7 +71,6 @@ class SettingController extends Controller
         $title = 'Update Settings';
         return view('admin.setting.edit', compact('setting', 'title'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -78,10 +80,25 @@ class SettingController extends Controller
      */
     public function update(Request $request, Setting $setting)
     {
-        $setting->update($request->only('key', 'value', 'status'));
+        $old = $setting->photo;
+        $path = base_path() . '/public/uploads';
+        if ($request->hasFile('cover_upload')) {
+            if ($request->cover_upload->isValid()) {
+                $file = $request->cover_upload;
+                $ext = $file->extension();
+                $fileName = md5(uniqid()) . '.' . $ext;
+                $file->move($path, $fileName);
+            }
+            $request->merge(['photo' => $fileName]);
+        }
+        if ($request->photo && $old && file_exists($path . '/' . $old)) {
+            unlink($path . '/' . $old);
+        } elseif (empty($request->photo)) {
+            $request->merge(['photo' => $old]);
+        }
+        $setting->update($request->only('type', 'key', 'photo', 'value', 'status'));
         return redirect()->route('setting.index')->with('success', 'Update setting success');
     }
-
     /**
      * Remove the specified resource from storage.
      *

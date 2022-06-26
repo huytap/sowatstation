@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use App\Models\Sowater;
 use App\Http\Requests\Admin\Sowater\StoreRequest;
-
 
 class SowaterController extends Controller
 {
@@ -58,6 +58,7 @@ class SowaterController extends Controller
         if ($request->input('show_homepage') == 'on') {
             $request->merge(['show_homepage' => 1]);
         }
+        $request->merge(['slug' => (string)Str::slug($request->input('name'), '-')]);
         if ($data = Sowater::create($request->all())) {
             return redirect()->route('sowater.edit', $data->id)->with('success', 'Create sowater success');
         }
@@ -135,10 +136,11 @@ class SowaterController extends Controller
         }
         if ($request->input('show_homepage') == 'on') {
             $request->merge(['show_homepage' => 1]);
-        }else{
+        } else {
             $request->merge(['show_homepage' => 0]);
         }
-        $sowater->update($request->only('full_name', 'avatar', 'avatar_hover', 'priority', 'on_column', 'show_homepage', 'status'));
+        $request->merge(['slug' => (string)Str::slug($request->input('name'), '-')]);
+        $sowater->update($request->only('name', 'full_name', 'title', 'type', 'slug', 'about', 'biography', 'avatar', 'avatar_hover', 'priority', 'on_column', 'show_homepage', 'work_at', 'status'));
         return redirect()->route('sowater.index')->with('success', 'Update sowater success');
     }
 

@@ -1,32 +1,40 @@
 @extends('clients.layouts.main')
 @section('content')
-<section class="projects">
+<div class="sowater creative__activities">
     <div class="container">
-        <div class="filter-controls cate projects__nav">
-            <a class="btn btn-default filter-button" data-filter="all">All</a>
-            @foreach($category as $ct)
-                <button class="btn btn-default filter-button" data-filter="{{$ct->slug}}">
-                    {{$ct->title}}                
-                </button>
-            @endforeach
-        </div>
-        <div class="works-filter-container">
-            <div class="row" id="project">
-            @foreach($data as $dt)
-                <div class="col-lg-4 col-md-6 item wow fadeInUp filter digital-design social  animated" data-id="1712" style="visibility: visible; animation-name: fadeInUp;">
-                    <a href="./project/{{$dt->slug}}.html" class="projects__item">
-                        <div class=" projects__item--img" style="background-image: url({{asset('uploads/'.$dt->cover)}}); background-size: cover; height: 425px; background-position: center center; background-repeat: no-repeat no-repeat;"></div>
-                    </a>
-                    <a href="./project/{{$dt->slug}}.html" class="projects__item">
-                        <h2 class=" projects__item--title">
-                            {{$dt->title}}							
-                            <span>{{$dt->tags}}</span>
-                        </h2>
-                    </a>
-                </div>  
-            @endforeach    
+        <h1 class="title">
+            <div class="icon">
+                <img src="{{asset('clients/images/round.png')}}" alt="">
             </div>
-         </div>
+            CREATIVE <span class="h1__line"></span><br/><span>ACTIVITIES</span>
+        </h1>
+    </div>
+</div>
+@if(!empty($data))
+<section class="creative">
+    <div class="container">
+        <div class="row">
+            @foreach($data as $dt)
+                <div class="col-lg-4 col-md-6 wow fadeInUp filter digital-design social  animated" data-id="1712" style="visibility: visible; animation-name: fadeInUp;">
+                    <a href="/creative-activities/{{$dt['slug']}}.html" class="creative__item">
+                        <img src="{{asset('uploads/'.$dt['cover_mobile'])}}" alt="" class="img-fluid">
+                        <span class="creative__item--desc">
+                            {{$dt['sub_title']}}
+                        </span>
+                        <div class="creative__item--detail">
+                            <div>
+                                <div class="icon">
+                                    <img src="{{asset('clients/images/arrow-down-4.png')}}" alt="">
+                                </div>
+                                <h3 class="creative__item--detail__title">{{$dt['title']}}</h3>
+                                <p>{{$dt['sub_title']}}.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>   
+            @endforeach 
+        </div>
     </div>
 </section>
+@endif
 @endsection

@@ -17,6 +17,9 @@
             .table th, .table td{
                 vertical-align: middle;
             }
+            .dropzone .dz-preview .dz-image img{
+                max-width: 100%
+            }
         </style>
     </head>
     <body  id="kt_body" style="background-image: url({{asset('assets/admin/assets/media/bg/bg-10.jpg')}}"  class="quick-panel-right demo-panel-right offcanvas-right header-fixed subheader-enabled page-loading"  >
@@ -25,16 +28,13 @@
             <div class="d-flex flex-column flex-root">
                 <div class="d-flex flex-row flex-column-fluid page">
                     <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
-                        
                         @include('admin.blocks.header')
                         @include('admin.blocks.breakcrum')
-
                         <div class="d-flex flex-column-fluid">
                             <div class="container">
                                 @yield('content')
                             </div>
                         </div>
-
                         @include('admin.blocks.footer')
                     </div>
                 </div>

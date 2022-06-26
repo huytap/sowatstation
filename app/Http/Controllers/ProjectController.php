@@ -1,23 +1,18 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Helpers\Enum;
-use App\Models\Category;
+use App\Models\Gallery;
 use Illuminate\Http\Request;
 use App\Models\Project;
-
+use App\Models\Sowater;
 class ProjectController extends Controller
 {
     public function index()
     {
-        $title = 'Projects | Sowat Station';
+        $title = 'Creative activities | Sowat Station';
         $data = Project::getList();
-        $category = Category::getList();
-        //$collection = collect($data);
-        return view('clients.project.index', compact('title', 'data', 'category'));
+        return view('clients.project.index', compact('title', 'data'));
     }
-
     public function detail($slug)
     {
         $data = Project::getBySlug($slug);
@@ -25,8 +20,9 @@ class ProjectController extends Controller
         $title = 'Sowat Station';
         if ($data) {
             $title = $data->title . ' | Sowat Station';
-            $related = Project::getList($data->id);
+            $gallery = Gallery::getList($data->id, 0, Enum::PROJECT);
+            $related = Project::getList($data->id, $data->sowater_id);
         }
-        return view('clients.project.detail', compact('title', 'related', 'data'));
+        return view('clients.project.detail', compact('title', 'gallery', 'related', 'data'));
     }
 }
