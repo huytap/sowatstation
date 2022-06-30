@@ -9,7 +9,7 @@
     }
 </style>
 @endsection
-<div class="form-group">
+{{-- <div class="form-group">
     <label>Sowater Name</label>
     <input name="name" type="text" value="{{old('name')??$model['name']}}" class="form-control form-control-solid" placeholder="Sowater Name" />
     @error('name')
@@ -17,7 +17,7 @@
             <div data-field="memo" data-validator="notEmpty" class="fv-help-block">{{$message}}</div>
         </div>
     @enderror
-</div>
+</div> --}}
 <div class="form-group">
     <label>Full Name</label>
     <input name="full_name" type="text" value="{{old('full_name')??$model['full_name']}}" class="form-control form-control-solid" placeholder="Full Name" />
@@ -46,16 +46,15 @@
     @enderror
 </div>
 <div class="form-group">
-    <label>Host</label>
-    <textarea name="work_at" class="form-control form-control-solid" id="content_">{{old('work_at')??$model->work_at}}</textarea>
-    {{-- <input name="work_at" type="text" value="{{old('work_at')??$model['work_at']}}" class="form-control form-control-solid" placeholder="Work at" /> --}}
-    @error('work_at')
+    <label>Background color</label>
+    <input type="text" name="background" class="form-control form-control-solid" value="{{old('background')??$model->background}}" placeholder="#cccccc"/>
+    @error('background')
         <div class="fv-plugins-message-container">
             <div data-field="memo" data-validator="notEmpty" class="fv-help-block">{{$message}}</div>
         </div>
     @enderror
 </div>
-<div class="form-group">
+{{-- <div class="form-group">
     <label>Show On Homepage</label>
     <label class="checkbox">
         @if($model['show_homepage'] == 1)
@@ -70,7 +69,7 @@
             <div data-field="memo" data-validator="notEmpty" class="fv-help-block">{{$message}}</div>
         </div>
     @enderror
-</div>
+</div> --}}
 <div class="form-group">
     <label>Show On Column</label>
     <input name="on_column" type="text" value="{{old('on_column')??$model['on_column']}}" class="form-control form-control-solid" />
@@ -139,6 +138,27 @@
             <option value="{{$key}}" {{ $model['type'] === $key ? 'selected' : '' }}>{{$st}}</option>
         @endforeach
     </select>
+</div>
+<div class="form-group">
+<h3>SEO</h3>
+</div>
+<div class="form-group">
+    <label>Meta Title</label>
+    <input type="text" name="meta_title" class="form-control form-control-solid" value="{{old('meta_title')??$model->meta_title}}" placeholder="Meta title"/>
+    @error('meta_title')
+        <div class="fv-plugins-message-container">
+            <div data-field="memo" data-validator="notEmpty" class="fv-help-block">{{$message}}</div>
+        </div>
+    @enderror
+</div>
+<div class="form-group">
+    <label>Meta Description</label>
+    <textarea class="form-control" name="meta_description" id="meta_desc">{{old('meta_description')??$model->meta_description}}</textarea>
+    @error('meta_description')
+        <div class="fv-plugins-message-container">
+            <div data-field="memo" data-validator="notEmpty" class="fv-help-block">{{$message}}</div>
+        </div>
+    @enderror
 </div>
 <div class="form-group">
     <label>Status</label>

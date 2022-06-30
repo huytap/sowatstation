@@ -103,7 +103,7 @@ class ProjectController extends Controller
             $request->merge(['cover_mobile' => $old_gif]);
         }
         $request->merge(['slug' => (string)Str::slug($request->input('title'), '-')]);
-        $project->update($request->only('title', 'slug', 'sowater_id', 'cover', 'cover_mobile', 'sub_title', 'description', 'status'));
+        $project->update($request->only('title', 'slug', 'sowater_id', 'cover', 'cover_mobile', 'sub_title', 'description', 'background', 'link_join_us', 'meta_title', 'meta_description', 'status'));
         return redirect()->route('project.index')->with('success', 'Update project success');
     }
     public function destroy(Project $project)

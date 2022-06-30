@@ -6,8 +6,8 @@ use App\Models\Setting;
         <div class="row align-items-start">
             <div class="col col-md-6 col-sm-5 col-xs-6 footer__logolist wow fadeInUp" data-wow-duration="1.5s">
                 We are
-                <a href="#" class="footer__logo"><img src="{{asset('logo.png')}}" alt="SoWat Station" class="img-fluid"></a>
-                <a href="#" class="footer__logohunter"><img src="{{asset('clients/images/logo__hunter.png')}}" alt="The Hunter Group" class="img-fluid"></a>
+                <a href="/" class="footer__logo"><img src="{{asset('logo.png')}}" alt="SoWat Station" class="img-fluid"></a>
+                <a href="https://thehuntergroup.asia" target="_blank" class="footer__logohunter"><img src="{{asset('clients/images/logo__hunter.png')}}" alt="The Hunter Group" class="img-fluid"></a>
             </div>
             <div class="col col-md-5 col-md-offset-1 wow fadeInUp" data-wow-duration="1.5s">
                 <ul class="footer__social">

@@ -20,8 +20,8 @@
                     <div class="portfolio__info--name px-5">
                         <div class="portfolio__info--title">
                             <ul>
-                                @foreach($art_title as $title)
-                                    <li>{{$title}}</li>
+                                @foreach($art_title as $tl)
+                                    <li>{{$tl}}</li>
                                 @endforeach
                             </ul>
                         </div>

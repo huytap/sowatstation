@@ -51,3 +51,10 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         '/setting' => SettingController::class,
     ]);
 });
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+    return 'Clear cache successfully';
+});

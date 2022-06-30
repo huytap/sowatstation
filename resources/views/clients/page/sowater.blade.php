@@ -23,7 +23,7 @@ $arrBg = [
 @endphp
 @extends('clients.layouts.main')
 @section('css')
-<style>
+{{-- <style>
     .list .row .col-md-4:first-child .artist__avatar:first-child::after{
         background: {{$arrBg[0]}};
     }
@@ -49,7 +49,7 @@ $arrBg = [
     .list .row .col-md-4:last-child .artist__avatar:last-child:after{
         background: {{$arrBg[8]}};
     }
-</style>
+</style> --}}
 @endsection
 @section('content')
 <div class="sowater">
@@ -87,6 +87,7 @@ $arrBg = [
                                 {{$col->full_name}}
                             </div>
                         </div>
+                        <div class="artist__avatar--bg" style="background:{{$col->background}}"></div>
                     </a>
                 @endforeach
             </div>
@@ -103,6 +104,7 @@ $arrBg = [
                                     <span>Associate Creative Director</span>
                                 </div>
                             </div>
+                            <div class="artist__avatar--bg" style="background:{{$col->background}}"></div>
                         </a>
                     @endforeach
                     {{-- <div class="artist__icon wow fadeInUp" data-wow-duration="1.5s"><img src="{{asset('clients/images/sowater-box.png')}}" alt=""></div> --}}
@@ -119,6 +121,7 @@ $arrBg = [
                                     {{$col->full_name}}
                                 </div>
                             </div>
+                            <div class="artist__avatar--bg" style="background:{{$col->background}}"></div>
                         </a>
                     @endforeach
                     {{-- <div class="artist__icon wow fadeInUp" data-wow-duration="1.5s"><img src="{{asset('clients/images/event.png')}}" alt=""></div>

@@ -7,7 +7,7 @@ class Project extends Model
     use HasFactory;
     protected $table = 'projects';
     protected $primaryKey = 'id';
-    protected $fillable = ['title', 'slug', 'sowater_id', 'cover', 'cover_mobile', 'sub_title', 'description', 'photos', 'status', 'created_by', 'updated_by'];
+    protected $fillable = ['title', 'slug', 'sowater_id', 'cover', 'cover_mobile', 'sub_title', 'description', 'photos', 'background', 'link_join_us', 'meta_title', 'meta_description', 'status', 'created_by', 'updated_by'];
     public function sowater()
     {
         return $this->belongsTo('App\Models\Sowater', 'sowater_id');
@@ -24,9 +24,11 @@ class Project extends Model
         if ($id) {
             $data = Project::where('status', 0)
                 ->where('id', '<>', $id)
+                ->orderByDesc('id')
                 ->get();
         } else {
             $data = Project::where('status', 0)
+                ->orderByDesc('id')
                 ->get();
         }
         return $data;
@@ -44,10 +46,12 @@ class Project extends Model
             $data = Project::where('status', 0)
                 ->where('id', '<>', $id)
                 ->where('sowater_id', $sowater_id)
+                ->orderByDesc('id')
                 ->get();
         } else {
             $data = Project::where('status', 0)
                 ->where('sowater_id', $sowater_id)
+                ->orderByDesc('id')
                 ->get();
         }
         return $data;

@@ -155,9 +155,9 @@ foreach($items as $item){
             // $('form').append('<input type="hidden" name="listfiles[]" value="' + response.name + '">')
             // uploadedDocumentMap[file.name] = response.name
             $('#fileStatus').html('File upload success')
-            var value = $("#gallery_id").val();
-            var newValue =(value ? (value + ",") : "") + response.id;
-            $("#gallery_id").val(newValue);
+            // var value = $("#gallery_id").val();
+            // var newValue =(value ? (value + ",") : "") + response.id;
+            // $("#gallery_id").val(newValue);
         },
         accept: function(file, done) {
             done();

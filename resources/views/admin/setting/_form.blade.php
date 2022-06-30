@@ -9,6 +9,7 @@
         <option value="1">Only Text Normal</option>
         <option value="2">Text Content & Image</option>
         <option value="3">Text Normal & Image</option>
+        <option value="4">Meta SEO</option>
     </select>
     @endif
     <label>Key</label>
@@ -25,7 +26,7 @@
 </div>
 @if(isset($model['type']) && in_array($model['type'], [2,3]))
 <div class="form-group">
-    <label>Image</label>
+    <label>Thumnails</label>
     <div class="custom-file">
         <input name="cover_upload" type="file" class="custom-file-input" id="customFile"/>
         <label class="custom-file-label" for="customFile">Choose file</label>
@@ -42,6 +43,26 @@
     @enderror
 </div>
 @endif
+@if($model['type'] == 4)
+<div class="form-group">
+    <label>Meta Title</label>
+    <textarea name="photo" id="content" class="form-control form-control-solid">{{old('photo')??$model->photo}}</textarea>
+    @error('photo')
+        <div class="fv-plugins-message-container">
+            <div data-field="memo" data-validator="notEmpty" class="fv-help-block">{{$message}}</div>
+        </div>
+    @enderror
+</div>
+<div class="form-group">
+    <label>Meta Description</label>
+    <textarea name="value" id="content" class="form-control form-control-solid">{{old('value')??$model->value}}</textarea>
+    @error('value')
+        <div class="fv-plugins-message-container">
+            <div data-field="memo" data-validator="notEmpty" class="fv-help-block">{{$message}}</div>
+        </div>
+    @enderror
+</div>
+@else
 <div class="form-group">
     <label>Value</label>
     <textarea name="value" id="content" class="form-control form-control-solid">{{old('value')??$model->value}}</textarea>
@@ -51,6 +72,7 @@
         </div>
     @enderror
 </div>
+@endif
 <div class="form-group">
     <label>Status</label>
     <select class="form-control form-control-solid" name="status">

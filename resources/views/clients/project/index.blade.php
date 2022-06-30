@@ -16,12 +16,15 @@
         <div class="row">
             @foreach($data as $dt)
                 <div class="col-lg-4 col-md-6 wow fadeInUp filter digital-design social  animated" data-id="1712" style="visibility: visible; animation-name: fadeInUp;">
-                    <a href="/creative-activities/{{$dt['slug']}}.html" class="creative__item">
-                        <img src="{{asset('uploads/'.$dt['cover_mobile'])}}" alt="" class="img-fluid">
-                        <span class="creative__item--desc">
-                            {{$dt['sub_title']}}
-                        </span>
-                        <div class="creative__item--detail">
+                    <a href="/creative-activities/{{$dt['slug']}}.html" class="creative__item" >
+                        <div class="creative__item--photo">
+                            <div class="bg" style="background:url({{asset('uploads/'.$dt['cover_mobile'])}}) no-repeat;background-size: 100%;"></div>
+                        </div>
+                        <h3 class="creative__item--desc">
+                            {{$dt['title']}}
+                            <span>{{$dt['sub_title']}}</span>
+                        </h3>
+                        {{-- <div class="creative__item--detail">
                             <div>
                                 <div class="icon">
                                     <img src="{{asset('clients/images/arrow-down-4.png')}}" alt="">
@@ -29,7 +32,7 @@
                                 <h3 class="creative__item--detail__title">{{$dt['title']}}</h3>
                                 <p>{{$dt['sub_title']}}.</p>
                             </div>
-                        </div>
+                        </div> --}}
                     </a>
                 </div>   
             @endforeach 

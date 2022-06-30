@@ -27,6 +27,24 @@
     @enderror
 </div>
 <div class="form-group">
+    <label>Background color</label>
+    <input type="text" name="background" class="form-control form-control-solid" value="{{old('background')??$model->background}}" placeholder="#cccccc"/>
+    @error('background')
+        <div class="fv-plugins-message-container">
+            <div data-field="memo" data-validator="notEmpty" class="fv-help-block">{{$message}}</div>
+        </div>
+    @enderror
+</div>
+<div class="form-group">
+    <label>Link order</label>
+    <input type="text" name="link_order" class="form-control form-control-solid" value="{{old('link_order')??$model->link_order}}" placeholder="Link"/>
+    @error('link_order')
+        <div class="fv-plugins-message-container">
+            <div data-field="memo" data-validator="notEmpty" class="fv-help-block">{{$message}}</div>
+        </div>
+    @enderror
+</div>
+<div class="form-group">
     <label>Sowater</label>
     <select name="sowater_id" class="form-control form-control-solid">
         <option value="">Select sowater</option>
@@ -111,6 +129,27 @@
     </div>
 </div>
 <input type="hidden" id="gallery_id" name="gallery_id" value="">
+<div class="form-group">
+<h3>SEO</h3>
+</div>
+<div class="form-group">
+    <label>Meta Title</label>
+    <input type="text" name="meta_title" class="form-control form-control-solid" value="{{old('meta_title')??$model->meta_title}}" placeholder="Meta title"/>
+    @error('meta_title')
+        <div class="fv-plugins-message-container">
+            <div data-field="memo" data-validator="notEmpty" class="fv-help-block">{{$message}}</div>
+        </div>
+    @enderror
+</div>
+<div class="form-group">
+    <label>Meta Description</label>
+    <textarea class="form-control" name="meta_description" id="meta_desc">{{old('meta_description')??$model->meta_description}}</textarea>
+    @error('meta_description')
+        <div class="fv-plugins-message-container">
+            <div data-field="memo" data-validator="notEmpty" class="fv-help-block">{{$message}}</div>
+        </div>
+    @enderror
+</div>
 <div class="form-group">
     <label>Status</label>
     <select class="form-control form-control-solid" name="status">

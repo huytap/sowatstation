@@ -7,7 +7,7 @@ use App\Models\Setting;
     <ul id="bannerSlide">
         @foreach($slides as $key => $slide)
             <li>
-                <img src="{{asset('uploads/'.$slide['photo'])}}" alt="" class="img-fluid"/>
+                <a href="{{$slide['link_url']}}"><img src="{{asset('uploads/'.$slide['photo'])}}" alt="" class="img-fluid"/></a>
             </li>
         @endforeach
     </ul>
@@ -53,12 +53,14 @@ use App\Models\Setting;
             <div class="services__list--item wow fadeInUp" data-wow-duration="1.5s">
                 <div class="services__list--item__contentpr">
                     <div class="row">
-                        <div class="col services__list--item__right">
-                            <div class="services__list--item__titlepr">
-                                <a href="{{route('store')}}"><img src="{{asset('clients/images/text__our-service-production.png')}}" alt="" class="img-fluid"></a>
-                            </div>
-                            <div class="services__list--item__list">
-                                {!!Setting::getValue('art_work')!!}
+                        <div class="col artwork services__list--item__right">
+                            <div>
+                                <div class="services__list--item__titlepr">
+                                    <a href="{{route('store')}}"><img src="{{asset('clients/images/text__our-service-production.png')}}" alt="" class="img-fluid"></a>
+                                </div>
+                                <div class="services__list--item__list">
+                                    {!!Setting::getValue('art_work')!!}
+                                </div>
                             </div>
                         </div>
                         <div class="col services__list--item__left">

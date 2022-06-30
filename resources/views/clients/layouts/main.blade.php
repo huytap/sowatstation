@@ -1,7 +1,12 @@
+@php
+use App\Models\Setting;
+@endphp
 <!doctype html>
 <html lang="en">
 <head>
     <title>{{$title}}</title>
+    <meta name="description" content="{!!$meta_description??Setting::getValue('meta_home')!!}" />
+    <meta property="og:image" itemprop="thumbnailUrl" content="{!!asset('uploads/'. ($meta_thumbnail??Setting::getImage('meta_thumnail')))!!}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="{{asset('favicon-sowat.png')}}" type="image/x-icon">
@@ -10,13 +15,12 @@
     <link rel="stylesheet" href="{{asset('clients/css/animate.min.css')}}">
     <link rel="stylesheet" href="{{asset('clients/css/style.css?'.time())}}">
     @yield('css')
+    {!!Setting::getValue('ga')!!}
 </head>
 <body>
     <div class="wrapper">
         @include('clients.blocks.header')
-
         @yield('content')
-
         @include('clients.blocks.footer')
     </div>
     @yield('script')

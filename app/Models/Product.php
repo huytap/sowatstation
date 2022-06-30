@@ -7,7 +7,7 @@ class Product extends Model
     use HasFactory;
     protected $table = 'products';
     protected $primaryKey = 'id';
-    protected $fillable = ['title', 'slug', 'sowater_id', 'cover', 'cover_mobile', 'sub_title', 'description', 'photos', 'status', 'created_by', 'updated_by'];
+    protected $fillable = ['title', 'slug', 'sowater_id', 'cover', 'cover_mobile', 'sub_title', 'description', 'photos', 'background', 'link_order', 'meta_title', 'meta_description', 'status', 'created_by', 'updated_by'];
     public function sowater()
     {
         return $this->belongsTo('App\Models\Sowater', 'sowater_id');
@@ -24,9 +24,11 @@ class Product extends Model
         if ($id) {
             $data = Product::where('status', 0)
                 ->where('id', '<>', $id)
+                ->orderByDesc('id')
                 ->get();
         } else {
             $data = Product::where('status', 0)
+                ->orderByDesc('id')
                 ->get();
         }
         return $data;
@@ -41,13 +43,15 @@ class Product extends Model
     public static function getListByArt($sowater_id, $id = 0)
     {
         if ($id) {
-            $data = Project::where('status', 0)
+            $data = Product::where('status', 0)
                 ->where('id', '<>', $id)
                 ->where('sowater_id', $sowater_id)
+                ->orderByDesc('id')
                 ->get();
         } else {
-            $data = Project::where('status', 0)
+            $data = Product::where('status', 0)
                 ->where('sowater_id', $sowater_id)
+                ->orderByDesc('id')
                 ->get();
         }
         return $data;

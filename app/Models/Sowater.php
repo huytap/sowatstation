@@ -8,7 +8,7 @@ class Sowater extends Model
     public $timestamps = false;
     protected $table = 'sowaters';
     protected $primaryKey = 'id';
-    protected $fillable = ['name', 'full_name', 'title', 'type', 'slug', 'about', 'biography', 'avatar', 'avatar_hover', 'priority', 'on_column', 'show_homepage', 'work_at', 'status', 'created_by', 'updated_by'];
+    protected $fillable = ['name', 'full_name', 'title', 'type', 'slug', 'background', 'about', 'biography', 'avatar', 'avatar_hover', 'priority', 'on_column', 'show_homepage', 'work_at', 'meta_title', 'meta_description', 'status', 'created_by', 'updated_by'];
     public function scopeSearch($query)
     {
         if ($key = request()->key) {

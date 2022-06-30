@@ -8,7 +8,7 @@ class Gallery extends Model
     protected $table = 'galleries';
     const CREATE_AT = 'create_at';
     use HasFactory;
-    protected $fillable = ['event_id', 'photo', 'original_name', 'file_size', 'file_type', 'priority', 'status', 'created_by', 'updated_by'];
+    protected $fillable = ['event_id', 'photo', 'original_name', 'file_size', 'file_type', 'priority', 'link_url', 'status', 'created_by', 'updated_by'];
     public function scopeSearch($query)
     {
         if ($status = request()->status) {

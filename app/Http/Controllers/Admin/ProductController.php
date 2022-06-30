@@ -103,7 +103,7 @@ class ProductController extends Controller
             $request->merge(['cover_mobile' => $old_gif]);
         }
         $request->merge(['slug' => (string)Str::slug($request->input('title'), '-')]);
-        $product->update($request->only('title', 'slug', 'sowater_id', 'cover', 'cover_mobile', 'sub_title', 'description', 'status'));
+        $product->update($request->only('title', 'slug', 'sowater_id', 'cover', 'cover_mobile', 'sub_title', 'description', 'background', 'link_order', 'meta_title', 'meta_description', 'status'));
         return redirect()->route('product.index')->with('success', 'Update Product success');
     }
     public function destroy(Product $product)

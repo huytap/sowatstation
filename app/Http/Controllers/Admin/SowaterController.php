@@ -1,30 +1,24 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use App\Models\Sowater;
 use App\Http\Requests\Admin\Sowater\StoreRequest;
-
 class SowaterController extends Controller
 {
     public function index()
     {
         $title = 'Sowater';
         $data = Sowater::search()->paginate(15);
-
         return view('admin.sowater.index', compact('data', 'title'));
     }
-
     public function create()
     {
         $title = 'Add New Sowater';
         $sowater = new Sowater;
         return view('admin.sowater.create', compact('sowater', 'title'));
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -58,12 +52,11 @@ class SowaterController extends Controller
         if ($request->input('show_homepage') == 'on') {
             $request->merge(['show_homepage' => 1]);
         }
-        $request->merge(['slug' => (string)Str::slug($request->input('name'), '-')]);
+        $request->merge(['slug' => (string)Str::slug($request->input('full_name'), '-')]);
         if ($data = Sowater::create($request->all())) {
             return redirect()->route('sowater.edit', $data->id)->with('success', 'Create sowater success');
         }
     }
-
     /**
      * Display the specified resource.
      *
@@ -74,7 +67,6 @@ class SowaterController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -86,7 +78,6 @@ class SowaterController extends Controller
         $title = 'Update Sowater';
         return view('admin.sowater.edit', compact('sowater', 'title'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -112,7 +103,6 @@ class SowaterController extends Controller
             }
             $request->merge(['avatar' => $fileName]);
         }
-
         if ($request->hasFile('avatarhover_upload')) {
             if ($request->avatarhover_upload->isValid()) {
                 $file = $request->avatarhover_upload;
@@ -122,13 +112,11 @@ class SowaterController extends Controller
             }
             $request->merge(['avatar_hover' => $fileName]);
         }
-
         if ($request->avatar && file_exists($path . '/' . $old)) {
             unlink($path . '/' . $old);
         } elseif (empty($request->avatar)) {
             $request->merge(['avatar' => $old]);
         }
-
         if ($request->avatar_hover && $old_hover && file_exists($path . '/' . $old_hover)) {
             unlink($path . '/' . $old_hover);
         } elseif (empty($request->avatar_hover)) {
@@ -139,11 +127,10 @@ class SowaterController extends Controller
         } else {
             $request->merge(['show_homepage' => 0]);
         }
-        $request->merge(['slug' => (string)Str::slug($request->input('name'), '-')]);
-        $sowater->update($request->only('name', 'full_name', 'title', 'type', 'slug', 'about', 'biography', 'avatar', 'avatar_hover', 'priority', 'on_column', 'show_homepage', 'work_at', 'status'));
+        $request->merge(['slug' => (string)Str::slug($request->input('full_name'), '-')]);
+        $sowater->update($request->only('name', 'full_name', 'title', 'type', 'slug', 'background', 'about', 'biography', 'avatar', 'avatar_hover', 'priority', 'on_column', 'show_homepage', 'work_at', 'meta_title', 'meta_description', 'status'));
         return redirect()->route('sowater.index')->with('success', 'Update sowater success');
     }
-
     /**
      * Remove the specified resource from storage.
      *
