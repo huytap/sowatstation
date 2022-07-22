@@ -23,10 +23,11 @@ class ProjectController extends Controller
         $meta_thumbnail = '';
         if ($data) {
             $title = $data->title . ' | Sowat Station';
+            $meta_description = $data['meta_description'] ? $data['meta_description'] : Setting::getValue('meta_home');
             $meta_thumbnail = $data['cover'];
             $gallery = Gallery::getList($data->id, 0, Enum::PROJECT);
-            $related = Project::getList($data->id, $data->sowater_id);
+            $related = Project::getListByArt($data->sowater_id, $data->id);
         }
-        return view('clients.project.detail', compact('title', 'gallery', 'related', 'data', 'meta_thumbnail'));
+        return view('clients.project.detail', compact('title', 'gallery', 'related', 'data', 'meta_thumbnail', 'meta_description'));
     }
 }

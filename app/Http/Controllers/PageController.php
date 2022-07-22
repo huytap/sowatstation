@@ -24,9 +24,10 @@ class PageController extends Controller
         if (!empty($data)) {
             $title = ($data['meta_title'] ? $data['meta_title'] : $data['full_name']) . ' | Sowater Station';
             $meta_description = $data['meta_description'] ? $data['meta_description'] : Setting::getValue('meta_home');
-            $meta_thumbnail = $data->avatar_hover;
+            $meta_thumbnail = $data->meta_thumnail;
             $related = Project::getListByArt($data->id);
-            return view('clients.page.porfolio', compact('title', 'data', 'related', 'meta_thumbnail', 'meta_description'));
+            $products = Product::getListByArt($data->id);
+            return view('clients.page.porfolio', compact('title', 'data', 'related', 'products', 'meta_thumbnail', 'meta_description'));
         }
     }
     public function store()
@@ -50,5 +51,36 @@ class PageController extends Controller
             $related = Product::getListByArt($data->sowater_id, $data->id);
         }
         return view('clients.page.storedetail', compact('title', 'gallery', 'related', 'data', 'meta_thumbnail', 'meta_description'));
+    }
+
+    public function loadData(Request $request){
+        if(isset($request->type)){
+            $type = $request->type;
+            $page = $request->page;
+            $sowater_id = $request->sowater;
+            if($type == 'store' && $sowater_id>0){
+                if(isset($request->related)){
+                    $data = Product::getListByArt($sowater_id, $request->id);
+                }else{
+                    $data = Product::getListByArt($sowater_id);
+                }
+                if($data){
+                    return view('clients.page._loadproduct', compact('data'));
+                }else{
+                    return 0;
+                }
+            }elseif($type == 'creative' && $sowater_id>0){
+                if(isset($request->related)){
+                    $data = Project::getListByArt($sowater_id, $request->id);
+                }else{
+                    $data = Project::getListByArt($sowater_id);
+                }
+                if($data){
+                    return view('clients.page._loadcreative', compact('data'));
+                }else{
+                    return 0;
+                }
+            }
+        }
     }
 }

@@ -8,7 +8,7 @@ class Sowater extends Model
     public $timestamps = false;
     protected $table = 'sowaters';
     protected $primaryKey = 'id';
-    protected $fillable = ['name', 'full_name', 'title', 'type', 'slug', 'background', 'about', 'biography', 'avatar', 'avatar_hover', 'priority', 'on_column', 'show_homepage', 'work_at', 'meta_title', 'meta_description', 'status', 'created_by', 'updated_by'];
+    protected $fillable = ['name', 'full_name', 'title', 'type', 'slug', 'background', 'about', 'biography', 'avatar', 'avatar_hover', 'priority', 'on_column', 'show_homepage', 'work_at', 'meta_title', 'meta_description', 'meta_thumnail', 'status', 'created_by', 'updated_by'];
     public function scopeSearch($query)
     {
         if ($key = request()->key) {
@@ -43,5 +43,19 @@ class Sowater extends Model
             ->where('status', 0)
             ->first();
         return $data;
+    }
+    public static function getSlugById($id)
+    {
+        $data = Sowater::where('status', 0)
+            ->where('id', $id)
+            ->first();
+        return $data?$data->slug:'';
+    }
+    public static function getAvatarById($id)
+    {
+        $data = Sowater::where('status', 0)
+            ->where('id', $id)
+            ->first();
+        return $data?$data->avatar:'';
     }
 }

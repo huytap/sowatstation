@@ -49,6 +49,15 @@ class SowaterController extends Controller
             }
             $request->merge(['avatar_hover' => $fileName]);
         }
+        if ($request->hasFile('meta_thumnail_upload')) {
+            if ($request->meta_thumnail_upload->isValid()) {
+                $file = $request->meta_thumnail_upload;
+                $ext = $file->extension();
+                $fileName = md5(uniqid()) . '.' . $ext;
+                $file->move($path, $fileName);
+            }
+            $request->merge(['meta_thumnail' => $fileName]);
+        }
         if ($request->input('show_homepage') == 'on') {
             $request->merge(['show_homepage' => 1]);
         }
@@ -90,6 +99,7 @@ class SowaterController extends Controller
         //dd($request);
         $old = $sowater->avatar;
         $old_hover = $sowater->avatar_hover;
+        $old_meta_thumnail = $sowater->meta_thumnail;
         $path = base_path() . '/public/uploads';
         if (!File::exists($path)) {
             File::makeDirectory($path, '0777', true);
@@ -112,6 +122,15 @@ class SowaterController extends Controller
             }
             $request->merge(['avatar_hover' => $fileName]);
         }
+        if ($request->hasFile('meta_thumnail_upload')) {
+            if ($request->meta_thumnail_upload->isValid()) {
+                $file = $request->meta_thumnail_upload;
+                $ext = $file->extension();
+                $fileName = md5(uniqid()) . '.' . $ext;
+                $file->move($path, $fileName);
+            }
+            $request->merge(['meta_thumnail' => $fileName]);
+        }
         if ($request->avatar && file_exists($path . '/' . $old)) {
             unlink($path . '/' . $old);
         } elseif (empty($request->avatar)) {
@@ -122,13 +141,18 @@ class SowaterController extends Controller
         } elseif (empty($request->avatar_hover)) {
             $request->merge(['avatar_hover' => $old_hover]);
         }
+        if ($request->meta_thumnail && $old_meta_thumnail && file_exists($path . '/' . $old_meta_thumnail)) {
+            unlink($path . '/' . $old_meta_thumnail);
+        } elseif (empty($request->meta_thumnail)) {
+            $request->merge(['meta_thumnail' => $old_meta_thumnail]);
+        }
         if ($request->input('show_homepage') == 'on') {
             $request->merge(['show_homepage' => 1]);
         } else {
             $request->merge(['show_homepage' => 0]);
         }
         $request->merge(['slug' => (string)Str::slug($request->input('full_name'), '-')]);
-        $sowater->update($request->only('name', 'full_name', 'title', 'type', 'slug', 'background', 'about', 'biography', 'avatar', 'avatar_hover', 'priority', 'on_column', 'show_homepage', 'work_at', 'meta_title', 'meta_description', 'status'));
+        $sowater->update($request->only('name', 'full_name', 'title', 'type', 'slug', 'background', 'about', 'biography', 'avatar', 'avatar_hover', 'priority', 'on_column', 'show_homepage', 'work_at', 'meta_title', 'meta_description', 'meta_thumnail', 'status'));
         return redirect()->route('sowater.index')->with('success', 'Update sowater success');
     }
     /**

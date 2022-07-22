@@ -43,6 +43,23 @@
         </div>
     @enderror
 </div>
+<div class="form-group">
+    <label>Banner mobile</label>
+    <div class="custom-file">
+        <input name="banner_mobile" type="file" class="custom-file-input" id="customFile2"/>
+        <label class="custom-file-label" for="customFile2">Choose file</label>
+    </div>
+    @if(!empty($model->photo_mobile))
+        <div style="padding-top:10px">
+            <img src="{{asset('uploads/'.$model->photo_mobile)}}" width="100"/>        
+        </div>
+    @endif
+    @error('banner_mobile')
+        <div class="fv-plugins-message-container">
+            <div data-field="memo" data-validator="notEmpty" class="fv-help-block">{{$message}}</div>
+        </div>
+    @enderror
+</div>
 <input type="hidden" id="gallery_id" name="gallery_id" value="">
 <div class="form-group">
     <label>Status</label>

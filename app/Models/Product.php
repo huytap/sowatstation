@@ -45,14 +45,14 @@ class Product extends Model
         if ($id) {
             $data = Product::where('status', 0)
                 ->where('id', '<>', $id)
-                ->where('sowater_id', $sowater_id)
+                ->whereIn('sowater_id', explode(',', $sowater_id))
                 ->orderByDesc('id')
-                ->get();
+                ->paginate(3);
         } else {
             $data = Product::where('status', 0)
-                ->where('sowater_id', $sowater_id)
+                ->whereRaw('FIND_IN_SET("'.$sowater_id.'", sowater_id)')
                 ->orderByDesc('id')
-                ->get();
+                ->paginate(3);
         }
         return $data;
     }

@@ -7,7 +7,10 @@ use App\Models\Setting;
     <ul id="bannerSlide">
         @foreach($slides as $key => $slide)
             <li>
-                <a href="{{$slide['link_url']}}"><img src="{{asset('uploads/'.$slide['photo'])}}" alt="" class="img-fluid"/></a>
+                <a href="{{$slide['link_url']}}">
+                    <img src="{{asset('uploads/'.$slide['photo'])}}" alt="" class="img-fluid d-none d-lg-block"/>
+                    <img src="{{asset('uploads/'.$slide['photo_mobile'])}}" alt="" class="img-fluid d-lg-none d-md-none"/>
+                </a>
             </li>
         @endforeach
     </ul>
@@ -33,10 +36,10 @@ use App\Models\Setting;
                 <div class="col services__list--item__right">
                     <div class="services__list--item__content">
                         <div class="row">
-                            <div class="col-md-3 services__list--item__content--title">
+                            <div class="col-md-3 col-3 services__list--item__content--title">
                                 <img src="{{asset('clients/images/cover__our-service_content.png')}}" alt="" class="img-fluid">
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-9 col-9">
                                 <div class="services__list--item__hub">
                                     <div class="services__list--item__title">
                                         <a href="{{route('creative')}}"><img src="{{asset('clients/images/text__our-service-hub.png')}}" alt="" class="img-fluid"></a>

@@ -1,0 +1,1 @@
+ALTER TABLE `galleries` ADD `photo_mobile` VARCHAR(128) NULL DEFAULT NULL AFTER `photo`;

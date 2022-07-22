@@ -161,6 +161,23 @@
     @enderror
 </div>
 <div class="form-group">
+    <label>Meta thumnail</label>
+    <div class="custom-file">
+        <input name="meta_thumnail_upload" type="file" class="custom-file-input" id="customFiles"/>
+        <label class="custom-file-label" for="customFile">Choose file</label>
+    </div>
+    @if(!empty($model->meta_thumnail))
+        <div style="padding-top:10px">
+            <img src="{{asset('uploads/'.$model->meta_thumnail)}}" width="100"/>        
+        </div>
+    @endif
+    @error('meta_thumnail_upload')
+        <div class="fv-plugins-message-container">
+            <div data-field="memo" data-validator="notEmpty" class="fv-help-block">{{$message}}</div>
+        </div>
+    @enderror
+</div>
+<div class="form-group">
     <label>Status</label>
     <select class="form-control form-control-solid" name="status">
         @foreach($status as $key => $st)

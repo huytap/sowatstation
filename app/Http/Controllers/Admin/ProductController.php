@@ -54,7 +54,8 @@ class ProductController extends Controller
         // if ($request->input('category')) {
         //     $request->merge(['sowater_id' => implode(',', $request->input('category'))]);
         // }
-        $request->merge(['slug' => (string)Str::slug($request->input('title'), '-')]);
+        $sowater_id = implode(',', $request->input('sowater_id'));
+        $request->merge(['slug' => (string)Str::slug($request->input('title'), '-'), 'sowater_id' => $sowater_id]);
         if ($pr = Product::create($request->all())) {
             $galleries = Gallery::getList(0, 0, Enum::PRODUCT);
             foreach ($galleries as $gl) {
@@ -102,7 +103,8 @@ class ProductController extends Controller
         } elseif (empty($request->cover_mobile)) {
             $request->merge(['cover_mobile' => $old_gif]);
         }
-        $request->merge(['slug' => (string)Str::slug($request->input('title'), '-')]);
+        $sowater_id = implode(',', $request->input('sowater_id'));
+        $request->merge(['slug' => (string)Str::slug($request->input('title'), '-'), 'sowater_id' => $sowater_id]);
         $product->update($request->only('title', 'slug', 'sowater_id', 'cover', 'cover_mobile', 'sub_title', 'description', 'background', 'link_order', 'meta_title', 'meta_description', 'status'));
         return redirect()->route('product.index')->with('success', 'Update Product success');
     }

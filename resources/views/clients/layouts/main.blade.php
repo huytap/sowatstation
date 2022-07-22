@@ -23,6 +23,9 @@ use App\Models\Setting;
         @yield('content')
         @include('clients.blocks.footer')
     </div>
+    <div id="loading">
+        <img src="{{asset('clients/images/loading.gif')}}" alt="">
+    </div>
     @yield('script')
 </body>
 </html>

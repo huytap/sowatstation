@@ -29,6 +29,7 @@ Route::get('/creative-activities.html', [Creative::class, 'index'])->name('creat
 Route::get('/creative-activities/{slug}.html', [Creative::class, 'detail']);
 Route::get('/portfolio/{slug}.html', [PageController::class, 'portfolio'])->name('portfolio');
 Route::get('/sowat-store.html', [PageController::class, 'store'])->name('store');
+Route::post('/loadData', [PageController::class, 'loadData'])->name('loadData');
 Route::get('/sowat-store/{slug}.html', [PageController::class, 'storedetail']);
 //Route::get('/project.html', [ProjectController::class, 'index'])->name('project');
 //admin

@@ -25,7 +25,7 @@ class Project extends Model
             $data = Project::where('status', 0)
                 ->where('id', '<>', $id)
                 ->orderByDesc('id')
-                ->get();
+                ->paginate(3);
         } else {
             $data = Project::where('status', 0)
                 ->orderByDesc('id')
@@ -45,14 +45,14 @@ class Project extends Model
         if ($id) {
             $data = Project::where('status', 0)
                 ->where('id', '<>', $id)
-                ->where('sowater_id', $sowater_id)
+                ->whereIn('sowater_id', explode(',', $sowater_id))
                 ->orderByDesc('id')
-                ->get();
+                ->paginate(3);
         } else {
             $data = Project::where('status', 0)
-                ->where('sowater_id', $sowater_id)
+                ->whereRaw('FIND_IN_SET("'.$sowater_id.'", sowater_id)')
                 ->orderByDesc('id')
-                ->get();
+                ->paginate(3);
         }
         return $data;
     }

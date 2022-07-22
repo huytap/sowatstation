@@ -51,10 +51,11 @@ class ProjectController extends Controller
             }
             $request->merge(['cover_mobile' => $fileName]);
         }
-        if ($request->input('category')) {
-            $request->merge(['sowater_id' => implode(',', $request->input('category'))]);
-        }
-        $request->merge(['slug' => (string)Str::slug($request->input('title'), '-')]);
+        // if ($request->input('category')) {
+        //     $request->merge(['sowater_id' => implode(',', $request->input('category'))]);
+        // }
+        $sowater_id = implode(',', $request->input('sowater_id'));
+        $request->merge(['slug' => (string)Str::slug($request->input('title'), '-'), 'sowater_id' => $sowater_id]);
         if ($pr = Project::create($request->all())) {
             $galleries = Gallery::getList(0, 0, Enum::PROJECT);
             foreach ($galleries as $gl) {
@@ -102,7 +103,8 @@ class ProjectController extends Controller
         } elseif (empty($request->cover_mobile)) {
             $request->merge(['cover_mobile' => $old_gif]);
         }
-        $request->merge(['slug' => (string)Str::slug($request->input('title'), '-')]);
+        $sowater_id = implode(',', $request->input('sowater_id'));
+        $request->merge(['slug' => (string)Str::slug($request->input('title'), '-'), 'sowater_id' => $sowater_id]);
         $project->update($request->only('title', 'slug', 'sowater_id', 'cover', 'cover_mobile', 'sub_title', 'description', 'background', 'link_join_us', 'meta_title', 'meta_description', 'status'));
         return redirect()->route('project.index')->with('success', 'Update project success');
     }

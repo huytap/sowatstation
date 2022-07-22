@@ -4,12 +4,12 @@ use App\Models\Setting;
 <div class="footer">
     <div class="container">
         <div class="row align-items-start">
-            <div class="col col-md-6 col-sm-5 col-xs-6 footer__logolist wow fadeInUp" data-wow-duration="1.5s">
+            <div class="col col-md-6 col-sm-5 col-xs-6 footer__logolist">
                 We are
                 <a href="/" class="footer__logo"><img src="{{asset('logo.png')}}" alt="SoWat Station" class="img-fluid"></a>
                 <a href="https://thehuntergroup.asia" target="_blank" class="footer__logohunter"><img src="{{asset('clients/images/logo__hunter.png')}}" alt="The Hunter Group" class="img-fluid"></a>
             </div>
-            <div class="col col-md-5 col-md-offset-1 wow fadeInUp" data-wow-duration="1.5s">
+            <div class="col col-md-5 col-md-offset-1">
                 <ul class="footer__social">
                     <li>Follow us on</li>
                     <li><a href="{!! Setting::getValue('facebook') !!}" target="_blank"><img src="{{asset('clients/images/fb.png')}}" alt="" class="img-fluid"></a></li>

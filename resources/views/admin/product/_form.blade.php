@@ -7,6 +7,9 @@
 @endsection
 @php
     $status = config('adminstatus');
+    //if($model['sowater_id']){
+        $model['sowater_id'] = explode(',', $model['sowater_id']);
+    //}
 @endphp
 <div class="form-group">
     <label>Title</label>
@@ -46,10 +49,11 @@
 </div>
 <div class="form-group">
     <label>Sowater</label>
-    <select name="sowater_id" class="form-control form-control-solid">
-        <option value="">Select sowater</option>
+    <select class="form-control selectpicker" name="sowater_id[]" multiple data-actions-box="true">
+    {{--<select name="sowater_id" class="form-control form-control-solid">--}}
+        {{--<option value="">Select sowater</option>--}}
         @foreach (App\Models\Sowater::getList() as $c)
-            <option value="{{$c['id']}}" {{ $c['id'] === $model['sowater_id'] ? 'selected' : '' }}>{{$c['full_name']}}</option>
+            <option value="{{$c['id']}}" {{ in_array($c['id'],$model['sowater_id']) ? 'selected' : '' }}>{{$c['full_name']}}</option>
         @endforeach
     </select>
     @error('category_id')
