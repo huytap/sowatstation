@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\Admin\AttachedfilesController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CKEditorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +24,15 @@ use App\Http\Controllers\Admin\ProductController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/clear-cache', function () {
+    echo 'Clear cache cache...';
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+    Artisan::call('optimize');
+    return 'Clear cache successfully';
+});
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/about.html', [PageController::class, 'about'])->name('about');
 Route::get('/creative-activities.html', [Creative::class, 'index'])->name('creative');
@@ -36,6 +46,9 @@ Route::get('/sowat-store/{slug}.html', [PageController::class, 'storedetail']);
 Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 Route::post('/admin/login/store', [AdminController::class, 'store'])->name('admin.login.store');
+Route::post('ckeditor/upload', [CKEditorController::class, 'store'])->name('ckeditor.upload');
+Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')->name('ckfinder_connector');
+Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderController@browserAction')->name('ckfinder_browser');
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/changepassword', [AdminController::class, 'changepassword'])->name('admin.changepassword');
@@ -51,11 +64,4 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         '/contact' => ContactController::class,
         '/setting' => SettingController::class,
     ]);
-});
-Route::get('/clear-cache', function () {
-    Artisan::call('cache:clear');
-    Artisan::call('config:clear');
-    Artisan::call('config:cache');
-    Artisan::call('view:clear');
-    return 'Clear cache successfully';
 });

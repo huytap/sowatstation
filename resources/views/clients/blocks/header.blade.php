@@ -19,7 +19,7 @@
         <ul id="navbar" class="menu__list text-end">
             <li><a href="{{route('home')}}">HOME</a></li>
             <li><a href="{{route('about')}}">ABOUT US</a></li>
-            <li><a href="{{route('creative')}}">CREATIVE ACTIVITIES</a></li>
+            <li><a href="{{route('creative')}}">CREATIVE<br/> ACTIVITIES</a></li>
             <li><a href="{{route('store')}}">STORE</a></li>
         </ul>
     </div>

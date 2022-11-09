@@ -5,6 +5,7 @@
 @endphp
 @extends('clients.layouts.main')
 @section('content')
+<div id="artistName"  class="name__up d-md-none">{{$data->full_name}}</div>
 <div class="sowater creative__activities portfolio__head">
     <div class="container">
         <h1 class="title">
@@ -19,7 +20,7 @@
         <div class="section">
             <div class="container">
                 <div class="portfolio__info">
-                    <div class="portfolio__info--name px-5">
+                    <div class="portfolio__info--name px-md-5">
                         <div class="portfolio__info--title">
                             <ul>
                                 @foreach($art_title as $tl)
@@ -27,16 +28,16 @@
                                 @endforeach
                             </ul>
                         </div>
-                        <span class="portfolio__info--name--01">{{$data->name}}</span>
+                        <span class="portfolio__info--name--01">{{$data->full_name}}</span>
                     </div>
                     <div class="row">
                         <div class="col-md-5">
-                            <h3 class="portfolio__info--about px-5">ABOUT</h3>
-                            <div class="portfolio__info--desc px-5">
+                            <h3 class="portfolio__info--about px-md-5">ABOUT</h3>
+                            <div class="portfolio__info--desc px-md-5">
                                 {!!$data->about !!}
                             </div>
-                            <h3 class="portfolio__info--about px-5">BIOGRAPHY</h3>
-                            <div class="portfolio__info--desc p-5">
+                            <h3 class="portfolio__info--about px-md-5">BIOGRAPHY</h3>
+                            <div class="portfolio__info--desc p-md-5">
                                 {!!$data->biography!!}
                             </div>
                         </div>
@@ -63,7 +64,7 @@
                                 <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp filter digital-design social  animated" data-id="1712" style="visibility: visible; animation-name: fadeInUp;">
                                     <a href="/sowat-store/{{$dt['slug']}}.html" class="creative__item" >
                                         <div class="creative__item--photo">
-                                            <div class="bg" style="background:url({{asset('uploads/'.$dt['cover_mobile'])}}) no-repeat;background-size: 100%;"></div>
+                                            <div class="bg" style="background:url({{asset('uploads/'.$dt['cover_mobile'])}}) no-repeat;background-size: cover;"></div>
                                         </div>
                                         <h3 class="creative__item--desc">
                                             {{$dt['title']}}
@@ -89,7 +90,7 @@
                                 <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp filter digital-design social  animated" data-id="1712" style="visibility: visible; animation-name: fadeInUp;">
                                     <a href="/creative-activities/{{$dt['slug']}}.html" class="creative__item" >
                                         <div class="creative__item--photo">
-                                            <div class="bg" style="background:url({{asset('uploads/'.$dt['cover_mobile'])}}) no-repeat;background-size: 100%;"></div>
+                                            <div class="bg" style="background:url({{asset('uploads/'.$dt['cover_mobile'])}}) no-repeat;background-size: cover"></div>
                                         </div>
                                         <h3 class="creative__item--desc">
                                             {{$dt['title']}}

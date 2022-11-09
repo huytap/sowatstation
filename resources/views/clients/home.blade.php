@@ -24,7 +24,8 @@ use App\Models\Setting;
             <img src="{{asset('clients/images/arrow-down2.png')}}" alt="" class="img-fluid">
         </div>
         <div class="services__title wow fadeInUp" data-wow-duration="1.5s">
-            <img src="{{asset('clients/images/text__our-service.png')}}" alt="" class="img-fluid">
+            <img src="{{asset('clients/images/text__our-service.png')}}" alt="" class="img-fluid d-none d-md-inline">
+            <img src="{{asset('clients/images/text__our-service-m.png?v=001')}}" alt="" class="img-fluid d-inline d-md-none">
         </div>
         <div class="services__list">
             <div class="services__list--item wow fadeInUp" data-wow-duration="1.5s">
@@ -85,7 +86,7 @@ use App\Models\Setting;
         $('#bannerSlide').bxSlider({
             mode: 'fade',
             captions: false,
-            touchEnabled: false,
+            touchEnabled: true,
             controls: false
         });
     });

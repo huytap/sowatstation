@@ -1,13 +1,16 @@
 <?php
+
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 class Project extends Model
 {
     use HasFactory;
     protected $table = 'projects';
     protected $primaryKey = 'id';
-    protected $fillable = ['title', 'slug', 'sowater_id', 'cover', 'cover_mobile', 'sub_title', 'description', 'photos', 'background', 'link_join_us', 'meta_title', 'meta_description', 'status', 'created_by', 'updated_by'];
+    protected $fillable = ['title', 'slug', 'sowater_id', 'cover', 'cover_mobile', 'cover_detail', 'sub_title', 'description', 'photos', 'background', 'link_join_us', 'meta_title', 'meta_description', 'status', 'created_by', 'updated_by'];
     public function sowater()
     {
         return $this->belongsTo('App\Models\Sowater', 'sowater_id');
@@ -50,7 +53,7 @@ class Project extends Model
                 ->paginate(3);
         } else {
             $data = Project::where('status', 0)
-                ->whereRaw('FIND_IN_SET("'.$sowater_id.'", sowater_id)')
+                ->whereRaw('FIND_IN_SET("' . $sowater_id . '", sowater_id)')
                 ->orderByDesc('id')
                 ->paginate(3);
         }

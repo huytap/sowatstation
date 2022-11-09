@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 class Sowater extends Model
 {
     use HasFactory;
@@ -27,6 +30,7 @@ class Sowater extends Model
     {
         $data = Sowater::where('status', 0)
             ->wherein('type',  $type)
+            ->orderByRaw('priority asc')
             ->get();
         return $data;
     }
@@ -49,13 +53,13 @@ class Sowater extends Model
         $data = Sowater::where('status', 0)
             ->where('id', $id)
             ->first();
-        return $data?$data->slug:'';
+        return $data ? $data->slug : '';
     }
     public static function getAvatarById($id)
     {
         $data = Sowater::where('status', 0)
             ->where('id', $id)
             ->first();
-        return $data?$data->avatar:'';
+        return $data ? $data->avatar : '';
     }
 }
