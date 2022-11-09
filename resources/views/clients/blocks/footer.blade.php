@@ -16,8 +16,8 @@ use App\Models\Setting;
             <div class="col-6 wow fadeInUp" data-wow-duration="1.5s">
                 <ul class="footer__social">
                     <li>Follow us on</li>
-                    <li><a href="{!! Setting::getValue('facebook') !!}" target="_blank"><img src="{{asset('clients/images/fb.png')}}" alt="" class="img-fluid"></a></li>
-                    <li><a href="{!! Setting::getValue('instagram') !!}" target="_blank"><img src="{{asset('clients/images/insta.png')}}" alt="" class="img-fluid"></a></li>
+                    <li><a href="{!! strip_tags(Setting::getValue('facebook')) !!}" target="_blank"><img src="{{asset('clients/images/fb.png')}}" alt="" class="img-fluid"></a></li>
+                    <li><a href="{!! strip_tags(Setting::getValue('instagram')) !!}" target="_blank"><img src="{{asset('clients/images/insta.png')}}" alt="" class="img-fluid"></a></li>
                 </ul>
                 <p>{!! Setting::getValue('address') !!}</p>
                 <a href="mailto:{!! Setting::getValue('contact_email') !!}">{!! Setting::getValue('contact_email') !!}</a>
