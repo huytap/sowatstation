@@ -1,9 +1,16 @@
 <?php
-
 return [
     [
         'label' => 'Dashboard',
         'route' => 'dashboard'
+    ],
+    [
+        'label' => 'Home Slide',
+        'route' => 'slide.index',
+        'items'   => [
+            'label' => 'Page 1',
+            'route' => ''
+        ]
     ],
     [
         'label' => 'Sowater',
@@ -14,16 +21,16 @@ return [
         ]
     ],
     [
-        'label' => 'Postcard',
-        'route' => 'postcard.index',
+        'label' => 'Creative Activities',
+        'route' => 'project.index',
         'items'   => [
             'label' => 'Page 1',
             'route' => ''
         ]
     ],
     [
-        'label' => 'Events',
-        'route' => 'event.index',
+        'label' => 'Store',
+        'route' => 'product.index',
         'items'   => [
             'label' => 'Page 1',
             'route' => ''

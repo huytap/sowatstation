@@ -1,17 +1,19 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
-
-
+use App\Http\Controllers\ProjectController as Creative;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\SowaterController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\PostcardController;
-
+use App\Http\Controllers\Admin\SlideController;
+use App\Http\Controllers\Admin\AttachedfilesController;
+use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CKEditorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,26 +24,43 @@ use App\Http\Controllers\Admin\PostcardController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/clear-cache', function () {
+    echo 'Clear cache cache...';
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+    Artisan::call('optimize');
+    return 'Clear cache successfully';
+});
 Route::get('/', [HomeController::class, 'home'])->name('home');
-Route::get('/sowater', [PageController::class, 'sowater'])->name('sowater');
-
-
+Route::get('/about.html', [PageController::class, 'about'])->name('about');
+Route::get('/creative-activities.html', [Creative::class, 'index'])->name('creative');
+Route::get('/creative-activities/{slug}.html', [Creative::class, 'detail']);
+Route::get('/portfolio/{slug}.html', [PageController::class, 'portfolio'])->name('portfolio');
+Route::get('/sowat-store.html', [PageController::class, 'store'])->name('store');
+Route::post('/loadData', [PageController::class, 'loadData'])->name('loadData');
+Route::get('/sowat-store/{slug}.html', [PageController::class, 'storedetail']);
+//Route::get('/project.html', [ProjectController::class, 'index'])->name('project');
 //admin
 Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
 Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 Route::post('/admin/login/store', [AdminController::class, 'store'])->name('admin.login.store');
-
+Route::post('ckeditor/upload', [CKEditorController::class, 'store'])->name('ckeditor.upload');
+Route::any('/ckfinder/connector', '\CKSource\CKFinderBridge\Controller\CKFinderController@requestAction')->name('ckfinder_connector');
+Route::any('/ckfinder/browser', '\CKSource\CKFinderBridge\Controller\CKFinderController@browserAction')->name('ckfinder_browser');
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-
     Route::get('/changepassword', [AdminController::class, 'changepassword'])->name('admin.changepassword');
-    // Route::post('/attachedfiles/uploadfile', [AttachedfilesController::class, 'uploadfile'])->name('admin.uploadfile');
-    // Route::post('/attachedfiles/deletefile', [AttachedfilesController::class, 'deletefile'])->name('admin.deletefile');
+    Route::post('/attachedfiles/uploadfile', [AttachedfilesController::class, 'uploadfile'])->name('admin.uploadfile');
+    Route::post('/attachedfiles/deletefile', [AttachedfilesController::class, 'deletefile'])->name('admin.deletefile');
     Route::resources([
+        '/slide' => SlideController::class,
         '/sowater' => SowaterController::class,
-        '/postcard' => PostcardController::class,
-        '/event' => EventController::class,
+        '/project' => ProjectController::class,
+        '/product' => ProductController::class,
+        // '/postcard' => PostcardController::class,
+        // '/event' => EventController::class,
         '/contact' => ContactController::class,
         '/setting' => SettingController::class,
     ]);

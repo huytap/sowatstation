@@ -5,12 +5,11 @@
 @endphp
 @extends('layouts.admin')
 @section('content')
-
 <div class="card card-custom gutter-b example example-compact">
     {{-- <div class="card-header">
         <h3 class="card-title">{{$menu_current_sub}}</h3>
     </div> --}}
-    <form class="form" action="{{route('setting.store')}}" method="POST">
+    <form class="form" action="{{route('setting.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="hidden" value={{date('Y-m-d H:m:i')}}" name="created_at">
         <div class="card-body">
@@ -52,5 +51,4 @@
         </div>
     </form>
 </div>
-
 @endsection

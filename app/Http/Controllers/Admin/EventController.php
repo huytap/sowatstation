@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use App\Models\Event;
+use App\Models\Gallery;
 use App\Http\Requests\Admin\Event\StoreRequest;
 use Exception;
 
@@ -55,7 +57,11 @@ class EventController extends Controller
             $request->merge(['banner' => $fileName]);
         }
         $request->merge(['slug' => (string)Str::slug($request->input('title'), '-')]);
-        if (Event::create($request->all())) {
+        if ($id = Event::create($request->all())->id) {
+            if ($request->input('gallery_id')) {
+                $gallery_id = $request->input('gallery_id');
+                Helper::updateGallery($gallery_id, $id);
+            }
             return redirect()->route('event.index')->with('success', 'Add Event success');
         }
     }
@@ -101,7 +107,7 @@ class EventController extends Controller
 
         $request->merge(['slug' => (string)Str::slug($request->input('title'), '-')]);
 
-        $event->update($request->only('title', 'slug', 'cover', 'banner', 'description', 'status'));
+        $event->update($request->only('title', 'sub_title', 'date', 'sowater_id', 'slug', 'cover', 'banner', 'short_desc', 'description', 'address', 'location', 'status'));
         return redirect()->route('event.index')->with('success', 'Update Event success');
     }
 

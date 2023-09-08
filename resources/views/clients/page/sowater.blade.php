@@ -14,36 +14,27 @@ $collection3 = $collection->filter(function($val, $key){
 @section('content')
 <div class="sowater">
     <div class="container">
-        <h1 class="title wow fadeInUp" data-wow-duration="1.5s">SOWAT—ER <img src="{{asset('clients/images/s.png')}}" alt=""></h1>
+        <h1 class="title">ABOUT <span class="d-md-none">U</span><img class="d-md-none" src="{{asset('clients/images/s.png')}}" alt=""><span class="h1__line"></span><br/><span class="d-none d-md-inline">U</span><img class="d-none d-md-inline" src="{{asset('clients/images/s.png')}}" alt=""></h1>
         <div class="sowater__description">
-            <div class="sowater__description--line wow fadeInLeft" data-wow-duration="1.5s"></div>
-            <div class="row">
-                <div class="col-6">
-                    <div class="sowater__description--icon wow fadeInUp" data-wow-duration="1.5s">
-                        <img src="{{asset('clients/images/event.png')}}" alt="" class="img-fluid">
-                    </div>
-                    <div class="sowater__description--text wow fadeInUp" data-wow-duration="1.5s">{!! Setting::getValue('sowater_description') !!}</div>
-                </div>
-                <div class="col-6">
-                    <div class="sowater__description--arrow wow fadeInUp" data-wow-duration="1s">
-                        <img src="{{asset('clients/images/arrow-sowater.png')}}" alt="" class="img-fluid">
-                    </div>
-                    <div class="sowater__description--eye wow fadeInUp" data-wow-duration="1.5s">
-                        <img src="{{asset('clients/images/eye.png')}}" alt="" class="img-fluid">
-                    </div>
-                </div>
-            </div>            
+            <div class="sowater__description--right">
+            {!!Setting::getValue('about_desc')!!}    
+            </div>  
+            <div class="sowater__description--left">
+                {!!Setting::getValue('about_desc_2')!!}
+            </div>          
+        </div>
+        <div class="arrow-line d-none d-md-block">
+            <img src="{{asset('clients/images/arrow-down-3.png')}}" alt="" class="img-fluid">
         </div>
     </div>
 </div>
 <div class="artist list">
     <div class="container">
         <div class="row">
-            @if(!empty($collection1))
-            <div class="col-md-4">
-                <div class="artist__square wow fadeInUp" data-wow-duration="1.5s"><img src="{{asset('clients/images/sowater-square.png')}}" alt=""></div>
-                @foreach($collection1 as $col)
-                    <div class="artist__avatar wow fadeInUp" data-wow-duration="1.5s">
+            @if(!empty($collection))
+                @foreach($collection as $col)
+                <div class="col-md-4 col-6">
+                    <a href="/portfolio/{{$col->slug}}.html" class="artist__avatar wow fadeInUp" data-wow-duration="1.5s">
                         <div class="artist__avatar--img"><img src="{{asset('uploads/'.$col->avatar)}}" class="img-fluid"></div>
                         <div class="artist__avatar--active">
                             <img src="{{asset('uploads/'.$col->avatar_hover)}}" class="img-fluid">
@@ -51,30 +42,32 @@ $collection3 = $collection->filter(function($val, $key){
                                 {{$col->full_name}}
                             </div>
                         </div>
-                    </div>
+                        <div class="artist__avatar--bg" style="background:{{$col->background}}"></div>
+                    </a>
+                </div>
                 @endforeach
-            </div>
             @endif
-            @if(!empty($collection2))
-                <div class="col-md-4">
+            {{-- @if(!empty($collection2))
                     @foreach($collection2 as $col)
-                        <div class="artist__avatar wow fadeInUp" data-wow-duration="1.5s">
+                    <div class="col-md-4 col-6">
+                        <a href="/portfolio/{{$col->slug}}.html" class="artist__avatar wow fadeInUp" data-wow-duration="1.5s">
                             <div class="artist__avatar--img"><img src="{{asset('uploads/'.$col->avatar)}}" class="img-fluid"></div>
                             <div class="artist__avatar--active">
                                 <img src="{{asset('uploads/'.$col->avatar_hover)}}" class="img-fluid">
                                 <div class="artist__avatar--info">
                                     {{$col->full_name}}
+                                    <span>Associate Creative Director</span>
                                 </div>
                             </div>
-                        </div>
+                            <div class="artist__avatar--bg" style="background:{{$col->background}}"></div>
+                        </a>
+                    </div>
                     @endforeach
-                    <div class="artist__icon wow fadeInUp" data-wow-duration="1.5s"><img src="{{asset('clients/images/sowater-box.png')}}" alt=""></div>
-                </div>
             @endif
             @if(!empty($collection3))
-                <div class="col-md-4">
                     @foreach($collection3 as $col)
-                        <div class="artist__avatar wow fadeInUp" data-wow-duration="1.5s">
+                    <div class="col-md-4 col-6">
+                        <a href="/portfolio/{{$col->slug}}.html" class="artist__avatar wow fadeInUp" data-wow-duration="1.5s">
                             <div class="artist__avatar--img"><img src="{{asset('uploads/'.$col->avatar)}}" class="img-fluid"></div>
                             <div class="artist__avatar--active">
                                 <img src="{{asset('uploads/'.$col->avatar_hover)}}" class="img-fluid">
@@ -82,12 +75,11 @@ $collection3 = $collection->filter(function($val, $key){
                                     {{$col->full_name}}
                                 </div>
                             </div>
-                        </div>
+                            <div class="artist__avatar--bg" style="background:{{$col->background}}"></div>
+                        </a>
+                    </div>
                     @endforeach
-                    <div class="artist__icon wow fadeInUp" data-wow-duration="1.5s"><img src="{{asset('clients/images/event.png')}}" alt=""></div>
-                    <div class="artist__round wow fadeInUp" data-wow-duration="1.5s"><img src="{{asset('clients/images/sowater-round.png')}}" alt=""></div>
-                </div>
-            @endif
+            @endif --}}
         </div>
     </div>
 </div>

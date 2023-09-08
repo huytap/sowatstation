@@ -11,7 +11,7 @@ class Sowater extends Model
     public $timestamps = false;
     protected $table = 'sowaters';
     protected $primaryKey = 'id';
-    protected $fillable = ['full_name', 'avatar', 'avatar_hover', 'priority', 'on_column', 'show_homepage', 'status', 'created_by', 'updated_by'];
+    protected $fillable = ['name', 'full_name', 'title', 'type', 'slug', 'background', 'about', 'biography', 'avatar', 'avatar_hover', 'priority', 'on_column', 'show_homepage', 'work_at', 'meta_title', 'meta_description', 'meta_thumnail', 'status', 'created_by', 'updated_by'];
     public function scopeSearch($query)
     {
         if ($key = request()->key) {
@@ -19,7 +19,6 @@ class Sowater extends Model
         }
         return $query;
     }
-
     public static function getShowHome()
     {
         $data = Sowater::where('status', 0)
@@ -27,10 +26,47 @@ class Sowater extends Model
             ->get();
         return $data;
     }
-
-    public static function getList()
+    public static function getList($type = [0, 1])
     {
         $data = Sowater::where('status', 0)
+            ->wherein('type',  $type)
+            ->orderByRaw('priority asc')
+            ->get();
+        return $data;
+    }
+    public static function getInfo($id)
+    {
+        $data = Sowater::where('status', 0)
+            ->where('id', $id)
+            ->first();
+        return $data;
+    }
+    public static function getBySlug($slug)
+    {
+        $data = Sowater::where('slug', $slug)
+            ->where('status', 0)
+            ->first();
+        return $data;
+    }
+    public static function getSlugById($id)
+    {
+        $data = Sowater::where('status', 0)
+            ->where('id', $id)
+            ->first();
+        return $data ? $data->slug : '';
+    }
+    public static function getAvatarById($id)
+    {
+        $data = Sowater::where('status', 0)
+            ->where('id', $id)
+            ->first();
+        return $data ? $data->avatar : '';
+    }
+  	public static function getList2()
+    {
+        $data = Sowater::where('status', 0)
+            //->wherein('type',  $type)
+            ->orderByRaw('priority asc')
             ->get();
         return $data;
     }

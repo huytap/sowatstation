@@ -11,8 +11,15 @@
     },
     "devDependencies": {
         "axios": "^0.21",
-        "laravel-mix": "^6.0.6",
+        "laravel-mix": "^6.0.49",
         "lodash": "^4.17.19",
-        "postcss": "^8.1.14"
+        "postcss": "^8.1.14",
+        "resolve-url-loader": "^5.0.0",
+        "sass": "^1.54.9",
+        "sass-loader": "^12.6.0"
+    },
+    "dependencies": {
+        "@ckeditor/ckeditor5-source-editing": "^35.0.1",
+        "tinymce": "^6.2.0"
     }
 }

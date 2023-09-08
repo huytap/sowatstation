@@ -5,13 +5,12 @@
 @endphp
 @extends('layouts.admin')
 @section('content')
-
 <div class="card card-custom gutter-b example example-compact">
     <div class="card-header">
         <h3 class="card-title">{{$menu_current_sub}}</h3>
     </div>
     <!--begin::Form-->
-    <form class="form" action="{{route('setting.update', $setting['id'])}}" method="POST">
+    <form class="form" action="{{route('setting.update', $setting['id'])}}" method="POST" enctype="multipart/form-data">
         @csrf @method('PUT')
         <input type="hidden" value={{date('Y-m-d H:m:i')}}" name="created_at">
         <div class="card-body">
@@ -50,5 +49,4 @@
     </form>
     <!--end::Form-->
 </div>
-
 @endsection
