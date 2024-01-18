@@ -66,7 +66,11 @@ class ProjectController extends Controller
         // if ($request->input('category')) {
         //     $request->merge(['sowater_id' => implode(',', $request->input('category'))]);
         // }
-        $sowater_id = implode(',', $request->input('sowater_id'));
+        if($request->input('sowater_id')){
+            $sowater_id = implode(',', $request->input('sowater_id'));
+        }else{
+            $sowater_id = '';
+        }
         $request->merge(['slug' => (string)Str::slug($request->input('title'), '-'), 'sowater_id' => $sowater_id]);
         if ($pr = Project::create($request->all())) {
             // $galleries = Gallery::getList(0, 0, Enum::PROJECT);
@@ -132,7 +136,12 @@ class ProjectController extends Controller
         } elseif (empty($request->cover_detail)) {
             $request->merge(['cover_detail' => $old_detail]);
         }
-        $sowater_id = implode(',', $request->input('sowater_id'));
+        
+        if($request->input('sowater_id')){
+            $sowater_id = implode(',', $request->input('sowater_id'));
+        }else{
+            $sowater_id = '';
+        }
         $request->merge(['slug' => (string)Str::slug($request->input('title'), '-'), 'sowater_id' => $sowater_id]);
         $project->update($request->only('title', 'slug', 'sowater_id', 'cover', 'cover_mobile', 'cover_detail', 'sub_title', 'description', 'photos', 'background', 'link_join_us', 'meta_title', 'meta_description', 'status'));
         return redirect()->route('project.index')->with('success', 'Update project success');
